@@ -19,7 +19,7 @@
             android:id="@+id/corrdnt"
             android:layout_width="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_height="120dp">
+            android:layout_height="110dp">
 
                 <com.google.android.material.bottomappbar.BottomAppBar
                     android:id="@+id/bottom_app_bar"
