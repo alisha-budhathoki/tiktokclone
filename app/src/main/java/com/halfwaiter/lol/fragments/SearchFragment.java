@@ -34,24 +34,6 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-//        VideoView videoView = view.findViewById(R.id.myvideoview);
-//        String videoPath = "android.resource://" + getContext().getPackageName() + "/" + R.raw.next_video;
-//        Uri uri = Uri.parse(videoPath);
-//        videoView.setVideoURI(uri);
-//        videoView.start();
-//
-//        videoView.setMediaController(null);
-//        MediaController mediaController = new MediaController(getContext());
-//        videoView.setMediaController(mediaController);
-//        mediaController.setAnchorView(videoView);
-
-//        android.widget.LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) videoView.getLayoutParams();
-//        int width = getResources().getConfiguration().screenWidthDp;
-//        int height = getResources().getConfiguration().screenHeightDp;
-//        System.out.println("jbsajhasdh"+ width+ height);
-//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){}
-//        params.leftMargin = 0;
-//        videoView.setLayoutParams(params);
         return view;
     }
 }

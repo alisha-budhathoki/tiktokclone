@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         final VideoView videoView = view.findViewById(R.id.myvideoview);
 
-        String videoPath = "android.resource://" + getContext().getPackageName() + "/" + R.raw.next_video;
+        String videoPath = "android.resource://" + getContext().getPackageName() + "/" + R.raw.nextt_video;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
         videoView.start();
@@ -30,11 +30,9 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 if (videoView.isPlaying())
                 {
-                    System.out.println("asdbjh");
                     videoView.pause();
                 }
                 else {
-                    System.out.println("skjadbhjsdh");
                     videoView.start();
                 }
             }
