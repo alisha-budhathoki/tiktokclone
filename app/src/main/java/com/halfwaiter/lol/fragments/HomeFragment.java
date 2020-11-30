@@ -3,7 +3,9 @@ package com.halfwaiter.lol.fragments;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.media.MediaPlayer;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     private int[] usePic =new int[]{R.drawable.ic_profile, R.drawable.ic_profile};
-    private int[] lolVideos = new int[]{R.raw.nextt_video, R.raw.next_video};
+    private int[] lolVideos = new int[]{R.raw.nextt_video, R.raw.video5};
     private String[] usernames = new String[]{"John", "Johnny"};
     private String[] captions = new String[]{"John", "Johnny"};
     private String[] soundNames = new String[]{"John", "Johnny"};
@@ -41,6 +43,10 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         recyclerViewHome = view.findViewById(R.id.recyclerHome);
+        SnapHelper mSnapHelper = new PagerSnapHelper();
+        mSnapHelper.attachToRecyclerView(recyclerViewHome);
+
+
         mListHome = seeNewSucessStories();
         homeAdapter = new HomeAdapter(getContext(), mListHome);
         recyclerViewHome.setAdapter(homeAdapter);
