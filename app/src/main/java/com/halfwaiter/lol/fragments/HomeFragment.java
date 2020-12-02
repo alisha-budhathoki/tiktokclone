@@ -24,13 +24,13 @@ import com.halfwaiter.lol.model.HomeModel;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    private int[] usePic =new int[]{R.drawable.ic_profile, R.drawable.ic_profile};
-    private int[] lolVideos = new int[]{R.raw.nextt_video, R.raw.video5};
-    private String[] usernames = new String[]{"John", "Johnny"};
-    private String[] captions = new String[]{"John", "Johnny"};
-    private String[] soundNames = new String[]{"John", "Johnny"};
-    private String[] noLikes = new String[]{"John", "Johnny"};
-    private String[] noComments = new String[]{"John", "Johnny"};
+    private int[] usePic =new int[]{R.drawable.ic_profile, R.drawable.ic_profile,  R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile};
+    private int[] lolVideos = new int[]{R.raw.nextt_video, R.raw.video5, R.raw.video5, R.raw.video5, R.raw.video5};
+    private String[] usernames = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
+    private String[] captions = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
+    private String[] soundNames = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
+    private String[] noLikes = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
+    private String[] noComments = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
 
     HomeAdapter homeAdapter;
     RecyclerView recyclerViewHome;
@@ -43,6 +43,8 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
         recyclerViewHome = view.findViewById(R.id.recyclerHome);
+
+//        For only one item at a time in recycler view
         SnapHelper mSnapHelper = new PagerSnapHelper();
         mSnapHelper.attachToRecyclerView(recyclerViewHome);
 
@@ -50,7 +52,7 @@ public class HomeFragment extends Fragment {
         mListHome = seeNewSucessStories();
         homeAdapter = new HomeAdapter(getContext(), mListHome);
         recyclerViewHome.setAdapter(homeAdapter);
-        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+            recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
 
 //        final VideoView videoView = view.findViewById(R.id.myvideoview);
@@ -127,7 +129,7 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<HomeModel> seeNewSucessStories() {
         ArrayList<HomeModel> listSucess = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             HomeModel homeModel = new HomeModel();
             homeModel.setLolVideo(lolVideos[i]);
             homeModel.setUserImage(usePic[i]);

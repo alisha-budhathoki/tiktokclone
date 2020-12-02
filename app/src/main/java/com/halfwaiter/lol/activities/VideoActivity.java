@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -39,8 +41,9 @@ public class VideoActivity extends Activity {
     private View mToggleButton;
     TimerThread mTimer;
     int mCount;
+    public final static int PICK_PHOTO_CODE = 1046;
 
-    TextView message;
+    TextView message, gallery;
 
     private String[] myTimeTitle = new String[]{"15s","60s"};
     TimeLengthAdapter timeLengthAdapter;
@@ -52,6 +55,7 @@ public class VideoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
+        gallery = findViewById(R.id.galleryTxt);
 //        Log.i(null , "Video starting");
         mCount=15;
         recyclerViewTime = findViewById(R.id.timeSecondsRecycler);
@@ -66,6 +70,22 @@ public class VideoActivity extends Activity {
         mTimer= new TimerThread();
         mTimer.setOnAlarmListener(mSTimer_OnAlarm);
         mTimer.setPeriod(1000);
+
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                // /If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+                // So as long as the result is not null, it's safe to use the intent.
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    // Bring up gallery to select a photo
+                    startActivityForResult(intent, PICK_PHOTO_CODE);
+                }
+
+            }
+        });
 
         mToggleButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -145,7 +165,13 @@ public class VideoActivity extends Activity {
             mCount--;
             message.setVisibility(View.VISIBLE);
             message.setText(""+mCount);
-            if( mCount==0) source.stop();
+            if( mCount==0) {
+                Toast.makeText(VideoActivity.this, "Maximum recording limit exceeded", Toast.LENGTH_SHORT).show();
+                source.stop();
+                videoCapture.stopCapturingVideo();
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
         }
     };
 

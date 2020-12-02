@@ -31,12 +31,12 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
     List<HomeModel> mList;
     Context context;
-    VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
-        @Override
-        public void onPlayerItemChanged(MetaData metaData) {
-
-        }
-    });
+//    VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
+//        @Override
+//        public void onPlayerItemChanged(MetaData metaData) {
+//
+//        }
+//    });
 
     public HomeAdapter(Context context, List<HomeModel> mList){
         this.context = context;
@@ -81,19 +81,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
                 }
             }
         });
-
-//        holder.lolVideo.setVideoURI(homeModel.getLolVideo());
-//        Uri uri = Uri.parse( "android.resource://" + context.getPackageName() + "/" + homeModel.getLolVideo());
-//        System.out.println("testvideo : "+uri);
-//        holder.lolVideo.setVideoURI(uri);
-//        holder.lolVideo.setVideoURI(Uri.parse(homeModel.getLolVideo()));// use methods to set url
-//        holder.lolVideo.start();
-//        holder.lolVideo.start();
-//        String videoPath = R.raw.nextt_video;
-
-//        Uri uri
-
-
 
         holder.userImage.setImageResource(homeModel.getUserImage());
         holder.username.setText(homeModel.getUsername());

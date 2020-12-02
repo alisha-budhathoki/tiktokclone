@@ -105,7 +105,7 @@ public class HomeActivity extends AppCompatActivity {
                 camera_intent.putExtra(MediaStore.ACTION_VIDEO_CAPTURE, video_uri);
 //        specifying quality for video
                 camera_intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); //1 specifies the highest quality
-                 startActivityForResult(camera_intent, VIDEO_REQUEST_CODE);
+                startActivityForResult(camera_intent, VIDEO_REQUEST_CODE);
 
 
             }
@@ -113,7 +113,6 @@ public class HomeActivity extends AppCompatActivity {
 
         dialog.show();
     }
-
 
 
     private void captureVideo(View v) {
@@ -131,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
         camera_intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); //1 specifies the highest quality
         // startActivityForResult(camera_intent, VIDEO_REQUEST_CODE);4
         // Create intent for picking a photo from the gallery
-         }
+    }
 
     public File getFielPath() {
         System.out.println("skjsddf");
