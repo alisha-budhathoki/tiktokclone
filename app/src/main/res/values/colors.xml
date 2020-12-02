@@ -7,5 +7,6 @@
     <color name="black">#000000</color>
     <color name="primaryGrey">#7e8691</color>
     <color name="lightGrey">#CCC</color>
+    <color name="veryLightGrey">#f6f6f6</color>
     <color name="tabSelected">#3c3ced</color>
 </resources>
