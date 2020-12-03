@@ -1,213 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/frame"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical">
+    android:layout_gravity="center_vertical"
+    android:background="@color/white">
 
-    <RelativeLayout
-        android:id="@+id/malam"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/top_coordinator"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:background="@drawable/profile_gradient"></RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/white_card"
-        android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:elevation="10dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginRight="30dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        app:elevation="10dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
+            android:id="@+id/malam"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="180dp"
+            android:background="@drawable/profile_gradient"></RelativeLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_my_coins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="28dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:elevation="8dp"
-                app:cardBackgroundColor="@color/veryLightGrey"
-                app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/white_card"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="140dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/my_coins_txt"
-                        style="@style/textSmallStyle"
+                <LinearLayout
+                    android:id="@+id/lin1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_my_coins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15dp"
-                        android:text="My Coins"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.3"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:elevation="8dp"
+                        app:cardBackgroundColor="@color/veryLightGrey"
+                        app:cardCornerRadius="20dp">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/my_coins_txt"
+                                style="@style/textSmallStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="15dp"
+                                android:text="My Coins" />
+
+                            <TextView
+                                style="@style/textMediumStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/my_coins_txt"
+                                android:layout_marginHorizontal="15dp"
+                                android:drawableLeft="@drawable/ic_coin_wrap"
+                                android:gravity="center"
+                                android:text="500" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
+                        android:id="@+id/txt_prfo_name"
+                        style="@style/TextTitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_toRightOf="@+id/card_my_coins"
+                        android:layout_weight="1.7"
+                        android:text="sdjnhdsb"
+                        android:textAlignment="center" />
+
+                    <ImageView
+                        android:id="@+id/iv_three_dots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toRightOf="@+id/txt_prfo_name"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_three_dts" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin1"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/txt_followers"
                         style="@style/textMediumStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_coin_wrap"
-                        android:text="500"
+                        android:layout_alignParentStart="true"
+                        android:layout_weight="1"
+                        android:text="Followers"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/txt_following"
+                        style="@style/textMediumStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/txt_followers"
+                        android:layout_weight="1"
+                        android:text="Following"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/txt_likes"
+                        style="@style/textMediumStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/txt_following"
+                        android:layout_weight="1"
+                        android:text="Likes"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin2"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/txt_no_flwrs"
+                        style="@style/TextTitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lin2"
+                        android:layout_alignParentStart="true"
+                        android:layout_weight="1"
+                        android:text="12k"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/txt_no_flwng"
+                        style="@style/TextTitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lin2"
+                        android:layout_toRightOf="@+id/txt_no_flwrs"
+                        android:layout_weight="1"
+                        android:text="  12k"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/txt_no_lks"
+                        style="@style/TextTitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lin2"
+                        android:layout_toRightOf="@+id/txt_no_flwng"
+                        android:layout_weight="1"
+                        android:text="12k"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin3"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_redeem_coins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_no_flwng"
+                        android:layout_gravity="center"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:elevation="8dp"
+                        android:textAlignment="center"
+                        app:cardBackgroundColor="@color/veryLightGrey"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/my_coins_txt" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        app:layout_constraintTop_toBottomOf="@+id/txt_no_flwng">
 
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            style="@style/textSmallStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Redeem Coins"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/my_coins_txt" />
 
-            <TextView
-                android:id="@+id/txt_prfo_name"
-                style="@style/TextTitleStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="sdjnhdsb"
-                app:layout_constraintEnd_toStartOf="@+id/iv_three_dots"
-                app:layout_constraintStart_toEndOf="@+id/card_my_coins"
-                app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/iv_three_dots"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/ic_three_dts"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/txt_prfo_name"
-                app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_followers"
-                style="@style/textMediumStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Followers"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txt_following"
-                app:layout_constraintTop_toBottomOf="@+id/card_my_coins" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/txt_following"
-                style="@style/textMediumStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Following"
-                app:layout_constraintEnd_toStartOf="@+id/txt_likes"
-                app:layout_constraintStart_toEndOf="@+id/txt_followers"
-                app:layout_constraintTop_toBottomOf="@+id/card_my_coins" />
+        </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/txt_likes"
-                style="@style/textMediumStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Likes"
-                app:layout_constraintStart_toEndOf="@+id/txt_following"
-                app:layout_constraintTop_toBottomOf="@+id/card_my_coins"
-                app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView
-                android:id="@+id/txt_no_flwrs"
-                style="@style/TextTitleStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="12k"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_followers"
-                app:layout_constraintEnd_toStartOf="@+id/txt_no_flwng"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:translationY="32dp"
+            app:cardCornerRadius="100dp"
+            app:layout_anchor="@id/white_card"
+            app:layout_anchorGravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/txt_no_flwng"
-                style="@style/TextTitleStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="  12k"
-                app:layout_constraintStart_toEndOf="@+id/txt_no_flwrs"
-                app:layout_constraintTop_toBottomOf="@+id/txt_followers"
-                app:layout_constraintEnd_toStartOf="@+id/txt_no_lks"/>
-            <TextView
-                android:id="@+id/txt_no_lks"
-                style="@style/TextTitleStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="  12k"
-                app:layout_constraintStart_toEndOf="@+id/txt_no_flwng"
-                app:layout_constraintTop_toBottomOf="@+id/txt_followers"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_redeem_coins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:elevation="8dp"
-                android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/veryLightGrey"
-                app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_no_flwng">
-                <TextView
-                    style="@style/textMediumStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Redeem Coins"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/my_coins_txt" />
-
-
-            </androidx.cardview.widget.CardView>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:translationY="32dp"
-        app:cardCornerRadius="100dp"
-        app:layout_anchor="@id/white_card"
-        app:layout_anchorGravity="center_horizontal">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/robot_dialog_icon"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/robot_dialog_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bkgrnd" />
+        </androidx.cardview.widget.CardView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_profile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/bkgrnd" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/top_coordinator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

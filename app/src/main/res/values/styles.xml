@@ -8,16 +8,16 @@
     </style>
     <style name="TextTitleStyle">
         <item name="android:textStyle">bold|normal</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">25sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="textMediumStyle">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
     <style name="textSmallStyle">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

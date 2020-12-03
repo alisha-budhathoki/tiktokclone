@@ -22,8 +22,7 @@ import com.halfwaiter.lol.model.MostRecentModel;
 import java.util.ArrayList;
 
 public class MostRecentFragment extends Fragment {
-    private int[] recentVideos = new int[]{R.drawable.index, R.drawable.bkgrnd2
-            , R.drawable.bkgrnd2, R.drawable.index, R.drawable.index, R.drawable.bkgrnd2};
+    private int[] recentVideos = new int[]{R.drawable.index, R.drawable.bkgrnd2, R.drawable.bkgrnd2, R.drawable.index, R.drawable.index, R.drawable.bkgrnd2};
     private String[] recentLikes = new String[]{"5k", "2k", "10k", "2k", "9k", "4k"};
 
     MostRecentAdapter mostRecentAdapter;
