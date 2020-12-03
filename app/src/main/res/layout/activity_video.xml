@@ -14,6 +14,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="#00000000" />
+    <TextView
+        android:id="@+id/txt_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="Sounds"
+        android:textColor="@color/white"
+        android:drawableLeft="@drawable/ic_music"
+        android:drawableTint="@color/white"
+        style="@style/TextTitleStyle"
+        />
     <ToggleButton
         android:id="@+id/stop"
         android:layout_width="80dp"
@@ -25,6 +39,7 @@
         app:layout_constraintBottom_toTopOf="@+id/timeSecondsRecycler"
         android:layout_marginBottom="10dp"
         />
+
     <TextView
         android:id="@+id/msg"
         android:layout_width="wrap_content"

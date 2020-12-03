@@ -15,7 +15,7 @@ public class VideoCapture extends SurfaceView implements SurfaceHolder.Callback 
     private SurfaceHolder holder;
     public Context context;
     private Camera camera;
-    Boolean isStarted;
+    Boolean isStarted = false;
 
     public static String videoPath = Environment.getExternalStorageDirectory()
             .getPath() + "/YOUR_VIDEO.mp4";

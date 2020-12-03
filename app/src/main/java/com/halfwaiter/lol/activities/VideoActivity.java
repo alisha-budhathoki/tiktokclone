@@ -49,12 +49,14 @@ public class VideoActivity extends Activity {
     TimeLengthAdapter timeLengthAdapter;
     RecyclerView recyclerViewTime;
     ArrayList<TimeSecond> mListTimeLength;
+    TextView soundTxt;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
+        soundTxt = findViewById(R.id.txt_sound);
         gallery = findViewById(R.id.galleryTxt);
 //        Log.i(null , "Video starting");
         mCount=15;
@@ -71,6 +73,14 @@ public class VideoActivity extends Activity {
         mTimer.setOnAlarmListener(mSTimer_OnAlarm);
         mTimer.setPeriod(1000);
 
+        soundTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent gotoSound = new Intent(getApplicationContext(), SoundActivity.class);
+            startActivity(gotoSound);
+                System.out.println("sankjkbdsa");
+            }
+        });
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

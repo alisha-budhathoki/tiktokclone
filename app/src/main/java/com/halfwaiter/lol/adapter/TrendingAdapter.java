@@ -40,43 +40,8 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull final TrendingAdapter.MyViewHolder holder, final int position) {
         final TrendingModel trendingModel =mList.get(position);
-
-//        holder.lolVideo.setBackgroundColor(Color.WHITE);
-//        holder.trendingVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
-//
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                System.out.println("shbjhasdss");
-//                holder.trendingVideo.start();
-////                holder.lolVideo.setBackgroundColor(Color.TRANSPARENT);
-//            }
-//        });
-//        System.out.println("dmjbs"+trendingModel.getTrendingVideo());
-//        System.out.println("dknsnjs"+trendingModel.getNoTrendingLikes());
-//        String videoPath = "android.resource://" + context.getPackageName() + "/" + trendingModel.getTrendingVideo();
-//        Uri uri = Uri.parse(videoPath);
-//        holder.trendingVideo.setVideoURI(uri);
-//        holder.trendingVideo.start();
-//        holder.trendingVideo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (holder.trendingVideo.isPlaying()){
-//                    System.out.println("sdhj");
-//                    holder.trendingVideo.pause();}
-//                else {
-//                    System.out.println("sjbhsd");
-//                    holder.trendingVideo.start();
-//                }
-//            }
-//        });
         holder.trendingVideoImage.setImageResource(trendingModel.getTrendingVideo());
         holder.noTrendingLikes.setText(trendingModel.getNoTrendingLikes());
-//        holder.userImage.setImageResource(homeModel.getUserImage());
-//        holder.username.setText(homeModel.getUsername());
-//        holder.soundName.setText(homeModel.getSoundName());
-//        holder.captions.setText(homeModel.getCaption());
-//        holder.noLike.setText(homeModel.getNoLikes());
-//        holder.noComment.setText(homeModel.getNoComments());
     }
 
 
