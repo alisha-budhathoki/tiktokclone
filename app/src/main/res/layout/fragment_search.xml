@@ -34,7 +34,6 @@
         app:layout_constraintTop_toBottomOf="@+id/searchEt"
         app:tabGravity="center"
         app:tabIndicatorColor="@color/tabSelected"
-        app:tabIndicator="@drawable/custom_indicator"
         app:tabIndicatorHeight="4dp"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/tabSelected"
