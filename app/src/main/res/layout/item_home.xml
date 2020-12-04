@@ -20,7 +20,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
     </VideoView>
-<!--    <ImageView-->
+    <RelativeLayout
+        android:id="@+id/video_play_pause"
+        android:layout_width="340dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv_love"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </RelativeLayout>
+    <!--    <ImageView-->
 <!--        android:id="@+id/playBtn"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
@@ -33,10 +42,10 @@
 <!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
     <ImageView
-        android:id="@+id/ivLove"
+        android:id="@+id/iv_love"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_love"
+        android:src="@drawable/icon_love_fill"
         android:layout_marginEnd="5dp"
         app:tint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

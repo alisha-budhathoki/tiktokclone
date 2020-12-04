@@ -76,7 +76,7 @@
             android:layout_weight="0.5"
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
-            android:src="@drawable/ic_love" />
+            android:src="@drawable/icon_love_fill" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,22 +48,22 @@ public class SoundActivity extends AppCompatActivity {
 
         viewPagerSound.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPagerSound);
-        viewPagerSound.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-                System.out.println("dklnsjkd");
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                System.out.println("dnsbshjsd");
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                System.out.println("nsvhv");
-            }
-        });
+//        viewPagerSound.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int i, float v, int i1) {
+//                System.out.println("dklnsjkd");
+//            }
+//
+//            @Override
+//            public void onPageSelected(int i) {
+//                System.out.println("dnsbshjsd");
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int i) {
+//                System.out.println("nsvhv");
+//            }
+//        });
         wrapTabIndicatorToTitle(tabLayout, 100, 10);
 
     }

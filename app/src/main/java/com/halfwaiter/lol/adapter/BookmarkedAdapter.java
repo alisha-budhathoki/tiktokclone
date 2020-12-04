@@ -20,6 +20,8 @@ import java.util.List;
 public class BookmarkedAdapter extends RecyclerView.Adapter<BookmarkedAdapter.MyViewHolder> {
     List<BookmarkModel> mList;
     Context context;
+    Boolean isLiked = false;
+
 
     public BookmarkedAdapter(Context context, List<BookmarkModel> mList) {
         this.context = context;
@@ -39,13 +41,20 @@ public class BookmarkedAdapter extends RecyclerView.Adapter<BookmarkedAdapter.My
         final BookmarkModel bookmarkModel = mList.get(position);
         holder.soundname.setText(bookmarkModel.getSoundNameBookmark());
         holder.soundlength.setText(bookmarkModel.getSoundLengthBookmark());
-        holder.reactBookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("sanjsbd");
-                holder.reactBookmark.setColorFilter(Color.rgb(255, 0, 0));
-            }
-        });
+            holder.reactBookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isLiked == false) {
+                        isLiked =true;
+                        holder.reactBookmark.setColorFilter(Color.rgb(255, 0, 0));
+                    }
+                    else {
+                        isLiked = false;
+                        holder.reactBookmark.setColorFilter(Color.rgb(0, 0, 0));
+                    }
+
+                }
+            });
     }
 
 
