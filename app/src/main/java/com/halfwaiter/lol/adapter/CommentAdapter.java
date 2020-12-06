@@ -42,6 +42,20 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
         holder.txtContentCmnt.setText(commentModel.getUserComment());
         holder.txtNameCommenter.setText(commentModel.getUserName());
         holder.pic_commenter.setImageResource(commentModel.getUserPhoto());
+
+        holder.rectComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isLiked == false) {
+                    isLiked = true;
+                    holder.rectComment.setColorFilter(Color.rgb(255, 0, 0));
+                } else {
+                    isLiked = false;
+                    holder.rectComment.setColorFilter(Color.rgb(0, 0, 0));
+                }
+
+            }
+        });
 //        holder.soundExploreLength.setText(exploreModel.getSoundLength());
 //        holder.soundExploreName.setText(exploreModel.getSoundName());
     }
