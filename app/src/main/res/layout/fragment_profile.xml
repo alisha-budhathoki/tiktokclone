@@ -20,14 +20,12 @@
             android:id="@+id/malam"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:background="@drawable/profile_gradient"
-            ></RelativeLayout>
+            android:background="@drawable/profile_gradient"></RelativeLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/white_card"
             android:layout_width="match_parent"
             android:layout_height="210dp"
-            android:clipChildren="false"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -36,6 +34,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="140dp"
             android:layout_marginBottom="10dp"
+            android:clipChildren="false"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="10dp">
 
@@ -57,12 +56,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:layout_marginVertical="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="0.3"
                         android:clipChildren="false"
                         android:clipToPadding="false"
                         android:elevation="8dp"
-                        android:layout_marginVertical="10dp"
                         app:cardBackgroundColor="@color/veryLightGrey"
                         app:cardCornerRadius="20dp">
 
@@ -159,7 +158,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lin2"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:weightSum="3">
 
@@ -212,9 +210,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txt_no_flwng"
                         android:layout_gravity="center"
+                        android:layout_marginVertical="10dp"
                         android:clipChildren="false"
                         android:clipToPadding="false"
-                        android:layout_marginVertical="10dp"
                         android:elevation="8dp"
                         android:textAlignment="center"
                         app:cardBackgroundColor="@color/veryLightGrey"
@@ -228,8 +226,8 @@
                             style="@style/textSmallStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Redeem Coins"
                             android:padding="10dp"
+                            android:text="Redeem Coins"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/my_coins_txt" />

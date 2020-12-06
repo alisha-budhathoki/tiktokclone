@@ -1,6 +1,7 @@
 package com.halfwaiter.lol.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -16,9 +17,15 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.halfwaiter.lol.R;
+import com.halfwaiter.lol.fragments.ExampleBottomSheetDialog;
 import com.halfwaiter.lol.model.HomeModel;
 import com.volokh.danylo.video_player_manager.manager.PlayerItemChangeListener;
 import com.volokh.danylo.video_player_manager.manager.SingleVideoPlayerManager;
@@ -29,10 +36,11 @@ import com.volokh.danylo.video_player_manager.ui.VideoPlayerView;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
     List<HomeModel> mList;
     Context context;
     Boolean isLiked = false;
+    BottomSheetBehavior sheetBehavior;
 //    VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
 //        @Override
 //        public void onPlayerItemChanged(MetaData metaData) {
@@ -77,17 +85,28 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         holder.captions.setText(homeModel.getCaption());
         holder.noLike.setText(homeModel.getNoLikes());
         holder.noComment.setText(homeModel.getNoComments());
+
         holder.icLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isLiked == false) {
-                    isLiked =true;
+                    isLiked = true;
                     holder.icLove.setColorFilter(Color.rgb(255, 0, 0));
-                }
-                else {
+                } else {
                     isLiked = false;
                     holder.icLove.setColorFilter(Color.rgb(255, 255, 255));
                 }
+
+            }
+        });
+        final FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        holder.icComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("knshd");
+                BottomSheetDialogFragment bottomSheetDialogFragment = new ExampleBottomSheetDialog();
+                bottomSheetDialogFragment.show(((FragmentActivity)context).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
 
             }
         });
@@ -103,6 +122,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
                 }
             }
         });
+
+        holder.icShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+                String code = "http://play.google.com/store/apps/details?id=" + context.getPackageName();
+                myIntent.putExtra(Intent.EXTRA_TEXT, code);
+                context.startActivity(Intent.createChooser(myIntent, "Share using"));
+            }
+        });
     }
 
 
@@ -111,9 +141,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         return mList.size();
     }
 
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recyclerView;
-        ImageView userImage, icLove;
+        ImageView userImage, icLove, icComment, icShare;
         VideoView lolVideo;
         ConstraintLayout constraintLayout;
         RelativeLayout relPlayPause;
@@ -125,6 +156,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.constraintMain);
             icLove = itemView.findViewById(R.id.iv_love);
+            icShare = itemView.findViewById(R.id.ivShare);
             lolVideo = itemView.findViewById(R.id.myvideoview);
             userImage = (ImageView) itemView.findViewById(R.id.ivRoundProfile);
             username = itemView.findViewById(R.id.txtUsrname);
@@ -133,7 +165,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             noLike = itemView.findViewById(R.id.txtLove);
             noComment = itemView.findViewById(R.id.txtComment);
             relPlayPause = itemView.findViewById(R.id.video_play_pause);
-
+            icComment = itemView.findViewById(R.id.iv_comment);
         }
 
 

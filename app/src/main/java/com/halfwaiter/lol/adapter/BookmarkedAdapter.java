@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.halfwaiter.lol.R;
 import com.halfwaiter.lol.model.BookmarkModel;
@@ -17,7 +18,7 @@ import com.halfwaiter.lol.model.TrendingModel;
 
 import java.util.List;
 
-public class BookmarkedAdapter extends RecyclerView.Adapter<BookmarkedAdapter.MyViewHolder> {
+public class BookmarkedAdapter extends Adapter<BookmarkedAdapter.MyViewHolder> {
     List<BookmarkModel> mList;
     Context context;
     Boolean isLiked = false;

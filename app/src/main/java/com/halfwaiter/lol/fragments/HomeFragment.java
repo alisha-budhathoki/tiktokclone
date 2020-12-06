@@ -2,12 +2,14 @@ package com.halfwaiter.lol.fragments;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
 
+import com.halfwaiter.lol.HomeActivity;
 import com.halfwaiter.lol.R;
 import com.halfwaiter.lol.adapter.HomeAdapter;
 import com.halfwaiter.lol.model.HomeModel;
@@ -24,7 +27,8 @@ import com.halfwaiter.lol.model.HomeModel;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    private int[] usePic =new int[]{R.drawable.ic_profile, R.drawable.ic_profile,  R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile};
+    Context context;
+    private int[] usePic = new int[]{R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile};
     private int[] lolVideos = new int[]{R.raw.nextt_video, R.raw.video5, R.raw.video5, R.raw.video5, R.raw.video5};
     private String[] usernames = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
     private String[] captions = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
@@ -41,7 +45,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerViewHome = view.findViewById(R.id.recyclerHome);
 
 //        For only one item at a time in recycler view
@@ -50,13 +54,13 @@ public class HomeFragment extends Fragment {
 
 
         mListHome = seeNewSucessStories();
+//        System.out.println("sbhdshjds" + fragmentManager);
         homeAdapter = new HomeAdapter(getContext(), mListHome);
         recyclerViewHome.setAdapter(homeAdapter);
-            recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
 
 //        final VideoView videoView = view.findViewById(R.id.myvideoview);
-
 
 
 //        String videoPath = "android.resource://" + getContext().getPackageName() + "/" + R.raw.nextt_video;

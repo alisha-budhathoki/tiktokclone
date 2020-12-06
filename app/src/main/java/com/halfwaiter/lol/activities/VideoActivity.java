@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.halfwaiter.lol.OnAlarmListener;
 import com.halfwaiter.lol.R;
 import com.halfwaiter.lol.TimerThread;
@@ -41,11 +42,12 @@ public class VideoActivity extends Activity {
     private View mToggleButton;
     TimerThread mTimer;
     int mCount;
+    BottomSheetBehavior sheetBehavior;
     public final static int PICK_PHOTO_CODE = 1046;
 
     TextView message, gallery;
 
-    private String[] myTimeTitle = new String[]{"15s","60s"};
+    private String[] myTimeTitle = new String[]{"15s", "60s"};
     TimeLengthAdapter timeLengthAdapter;
     RecyclerView recyclerViewTime;
     ArrayList<TimeSecond> mListTimeLength;
@@ -59,7 +61,7 @@ public class VideoActivity extends Activity {
         soundTxt = findViewById(R.id.txt_sound);
         gallery = findViewById(R.id.galleryTxt);
 //        Log.i(null , "Video starting");
-        mCount=15;
+        mCount = 15;
         recyclerViewTime = findViewById(R.id.timeSecondsRecycler);
         mListTimeLength = seeTimeLength();
         timeLengthAdapter = new TimeLengthAdapter(VideoActivity.this, mListTimeLength);
@@ -67,18 +69,20 @@ public class VideoActivity extends Activity {
         recyclerViewTime.setLayoutManager(new LinearLayoutManager(VideoActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
         videoCapture = (VideoCapture) findViewById(R.id.videoView);
-        mToggleButton= (Button) findViewById(R.id.stop);
+        mToggleButton = (Button) findViewById(R.id.stop);
         message = findViewById(R.id.msg);
-        mTimer= new TimerThread();
+        mTimer = new TimerThread();
         mTimer.setOnAlarmListener(mSTimer_OnAlarm);
         mTimer.setPeriod(1000);
 
         soundTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent gotoSound = new Intent(getApplicationContext(), SoundActivity.class);
-            startActivity(gotoSound);
+
+                Intent gotoSound = new Intent(getApplicationContext(), SoundActivity.class);
+                startActivity(gotoSound);
                 System.out.println("sankjkbdsa");
+
             }
         });
         gallery.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +108,7 @@ public class VideoActivity extends Activity {
                     System.out.println("jnsab");
                     videoCapture.startCapturingVideo();
                     counterIncrease();
-                }
-                else {
+                } else {
                     System.out.println("nksaksa");
                     videoCapture.stopCapturingVideo();
                     setResult(Activity.RESULT_OK);
@@ -120,13 +123,12 @@ public class VideoActivity extends Activity {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     int position = getCurrentItem();
-                    System.out.println("dbjsbdjdb"+position);
-                    if (position ==0){
+                    System.out.println("dbjsbdjdb" + position);
+                    if (position == 0) {
                         mCount = 15;
-                    }
-                    else {
+                    } else {
                         mCount = 60;
                     }
 //                    onPageChanged(position);
@@ -136,20 +138,21 @@ public class VideoActivity extends Activity {
 //                System.out.println("sdsdsujbjkdsjs");
 //                myTimeTitle[0]
             }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                System.out.println("dsnbdisd"+dx+"shbds"+dy);
+                System.out.println("dsnbdisd" + dx + "shbds" + dy);
             }
 
-            });
+        });
 
 
     }
 
-    private int getCurrentItem(){
-        return ((LinearLayoutManager)recyclerViewTime.getLayoutManager())
+    private int getCurrentItem() {
+        return ((LinearLayoutManager) recyclerViewTime.getLayoutManager())
                 .findFirstVisibleItemPosition();
     }
 
@@ -169,13 +172,13 @@ public class VideoActivity extends Activity {
         mTimer.start();
     }
 
-    OnAlarmListener mSTimer_OnAlarm= new OnAlarmListener() {
+    OnAlarmListener mSTimer_OnAlarm = new OnAlarmListener() {
         @Override
         public void OnAlarm(TimerThread source) {
             mCount--;
             message.setVisibility(View.VISIBLE);
-            message.setText(""+mCount);
-            if( mCount==0) {
+            message.setText("" + mCount);
+            if (mCount == 0) {
                 Toast.makeText(VideoActivity.this, "Maximum recording limit exceeded", Toast.LENGTH_SHORT).show();
                 source.stop();
                 videoCapture.stopCapturingVideo();

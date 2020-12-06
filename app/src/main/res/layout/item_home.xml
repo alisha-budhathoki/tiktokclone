@@ -61,9 +61,9 @@
         android:textStyle="bold"
         android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/ivComment"/>
+        app:layout_constraintBottom_toTopOf="@+id/iv_comment"/>
     <ImageView
-        android:id="@+id/ivComment"
+        android:id="@+id/iv_comment"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/ic_comment"

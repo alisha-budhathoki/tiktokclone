@@ -8,15 +8,38 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/comment_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12 "
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="invisible"
+        android:layout_gravity="center"/>
+
 
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="Explore"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:layout_gravity="center"/>
 
-   </androidx.appcompat.widget.Toolbar>
+    <ImageView
+        android:id="@+id/imgCross"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cross"
+        android:layout_gravity="end"
+        android:layout_marginEnd="15dp"
+        android:visibility="invisible"
+        app:tint="@color/primaryGrey" />
+
+</androidx.appcompat.widget.Toolbar>

@@ -45,7 +45,7 @@ public class SoundActivity extends AppCompatActivity {
         adapter.addFragment(new ExploreFragment(), "Explore");
         adapter.addFragment(new BookmarkedFragment(), "Bookmarked");
 
-
+        
         viewPagerSound.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPagerSound);
 //        viewPagerSound.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
