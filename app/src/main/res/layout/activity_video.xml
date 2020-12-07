@@ -50,6 +50,17 @@
         android:textSize="30sp"
         android:visibility="gone"
         android:text="Message"/>
+    <TextView
+        android:id="@+id/cameraSwap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swap Camera"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timeSecondsRecycler"
         android:layout_width="50dp"

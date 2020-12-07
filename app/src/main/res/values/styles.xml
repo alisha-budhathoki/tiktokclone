@@ -8,7 +8,7 @@
     </style>
     <style name="TextTitleStyle">
         <item name="android:textStyle">bold|normal</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

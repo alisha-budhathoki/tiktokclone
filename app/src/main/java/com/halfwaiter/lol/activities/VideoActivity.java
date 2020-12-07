@@ -51,7 +51,7 @@ public class VideoActivity extends Activity {
     TimeLengthAdapter timeLengthAdapter;
     RecyclerView recyclerViewTime;
     ArrayList<TimeSecond> mListTimeLength;
-    TextView soundTxt;
+    TextView soundTxt, swapCamera;
 
 
     @Override
@@ -67,10 +67,11 @@ public class VideoActivity extends Activity {
         timeLengthAdapter = new TimeLengthAdapter(VideoActivity.this, mListTimeLength);
         recyclerViewTime.setAdapter(timeLengthAdapter);
         recyclerViewTime.setLayoutManager(new LinearLayoutManager(VideoActivity.this, LinearLayoutManager.HORIZONTAL, false));
-
+        swapCamera = findViewById(R.id.cameraSwap);
         videoCapture = (VideoCapture) findViewById(R.id.videoView);
         mToggleButton = (Button) findViewById(R.id.stop);
         message = findViewById(R.id.msg);
+
         mTimer = new TimerThread();
         mTimer.setOnAlarmListener(mSTimer_OnAlarm);
         mTimer.setPeriod(1000);
