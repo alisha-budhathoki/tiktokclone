@@ -8,7 +8,10 @@
 
     <include
         android:id="@+id/my_toolbar"
-        layout="@layout/custom_toolbar" />
+        layout="@layout/custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/searchEt"

@@ -39,7 +39,7 @@
     </style>
     <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
