@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     private String[] usernames = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
     private String[] captions = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
     private String[] soundNames = new String[]{"Rock", "Sounds", "Music", "Pop", "Remix"};
-    private String[] noLikes = new String[]{"23", "25", "25k", "24.5k", "1m"};
+    private int[] noLikes = new int[]{23, 25, 250, 245, 1};
     private String[] noComments = new String[]{"34", "45", "45k", "56.4k", "12.3k"};
 
     HomeAdapter homeAdapter;

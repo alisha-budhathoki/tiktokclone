@@ -40,6 +40,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
     List<HomeModel> mList;
     Context context;
     Boolean isLiked = false;
+    int likesNo;
     BottomSheetBehavior sheetBehavior;
 //    VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
 //        @Override
@@ -83,17 +84,23 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
         holder.username.setText(homeModel.getUsername());
         holder.soundName.setText(homeModel.getSoundName());
         holder.captions.setText(homeModel.getCaption());
-        holder.noLike.setText(homeModel.getNoLikes());
+        holder.noLike.setText(String.valueOf(homeModel.getNoLikes()));
         holder.noComment.setText(homeModel.getNoComments());
-
+         likesNo = homeModel.getNoLikes();
+        System.out.println("sndjsb"+likesNo);
         holder.icLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isLiked == false) {
                     isLiked = true;
+                    likesNo = likesNo+ 1;
+                    holder.noLike.setText(String.valueOf(likesNo));
                     holder.icLove.setColorFilter(Color.rgb(255, 0, 0));
                 } else {
                     isLiked = false;
+                    likesNo = likesNo -1;
+                    holder.noLike.setText(String.valueOf(likesNo));
+
                     holder.icLove.setColorFilter(Color.rgb(255, 255, 255));
                 }
 
@@ -170,5 +177,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
 
 
     }
+
 
 }

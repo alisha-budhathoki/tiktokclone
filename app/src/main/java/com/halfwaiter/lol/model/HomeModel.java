@@ -1,17 +1,25 @@
 package com.halfwaiter.lol.model;
 
 public class HomeModel {
-int  userImage, lolVideo;
-String username, caption, soundName, noLikes, noComments ;
+    int userImage, lolVideo, noLikes;
+    String username, caption, soundName, noComments;
 
     public HomeModel() {
-        this.lolVideo = lolVideo;
         this.userImage = userImage;
+        this.lolVideo = lolVideo;
+        this.noLikes = noLikes;
         this.username = username;
         this.caption = caption;
         this.soundName = soundName;
-        this.noLikes = noLikes;
         this.noComments = noComments;
+    }
+
+    public int getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(int userImage) {
+        this.userImage = userImage;
     }
 
     public int getLolVideo() {
@@ -22,12 +30,12 @@ String username, caption, soundName, noLikes, noComments ;
         this.lolVideo = lolVideo;
     }
 
-    public int getUserImage() {
-        return userImage;
+    public int getNoLikes() {
+        return noLikes;
     }
 
-    public void setUserImage(int userImage) {
-        this.userImage = userImage;
+    public void setNoLikes(int noLikes) {
+        this.noLikes = noLikes;
     }
 
     public String getUsername() {
@@ -54,14 +62,6 @@ String username, caption, soundName, noLikes, noComments ;
         this.soundName = soundName;
     }
 
-    public String getNoLikes() {
-        return noLikes;
-    }
-
-    public void setNoLikes(String noLikes) {
-        this.noLikes = noLikes;
-    }
-
     public String getNoComments() {
         return noComments;
     }
@@ -70,3 +70,5 @@ String username, caption, soundName, noLikes, noComments ;
         this.noComments = noComments;
     }
 }
+
+
