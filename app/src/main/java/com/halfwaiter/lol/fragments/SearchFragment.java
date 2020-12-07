@@ -50,9 +50,9 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 //        Toolbar toolbar = ((HomeActivity)getActivity()).findViewById(R.id.toolbar);
-        TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Explore");
-        toolbar_title.setVisibility(View.VISIBLE);
+//        TextView toolbar_title = view.findViewById(R.id.toolbar_title);
+//        toolbar_title.setText("Explore");
+//        toolbar_title.setVisibility(View.VISIBLE);
         viewpagerSearch = (ViewPager) view.findViewById(R.id.viewPagerSearch);
         tabLayout = view.findViewById(R.id.tabLayout);
         adapter = new TabAdapter(getFragmentManager());

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,20 +19,31 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            app:cardElevation="@dimen/_5sdp"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
             android:layout_alignParentStart="true"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="0.5"
-            android:elevation="10dp"
             app:cardBackgroundColor="@color/white">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_music" />
+                android:src="@drawable/ic_music_note" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                android:layout_gravity="center"
+                android:backgroundTint="#800000"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                app:maxImageSize="@dimen/_22sdp"
+                app:src="@drawable/ic_baseline_play_arrow_24" />
         </androidx.cardview.widget.CardView>
 
         <RelativeLayout
@@ -68,15 +80,40 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/txt_like_explr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/txt_following"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_weight="0.5"
-            android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/icon_love_fill" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/txt_like_explr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txt_following"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_gravity="top|end"
+                android:src="@drawable/icon_love_fill" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_gravity="bottom|end"
+                app:cardElevation="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:background="#800000"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:text="use sound"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

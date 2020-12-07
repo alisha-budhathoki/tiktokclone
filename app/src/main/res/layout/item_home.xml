@@ -2,152 +2,198 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/constraintMain"
     tools:context=".fragments.HomeFragment">
+
     <VideoView
         android:id="@+id/myvideoview"
         android:layout_width="fill_parent"
-        android:layout_alignParentRight="true"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-    </VideoView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></VideoView>
+
     <RelativeLayout
         android:id="@+id/video_play_pause"
         android:layout_width="340dp"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/iv_love"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-    </RelativeLayout>
+        app:layout_constraintTop_toTopOf="parent"></RelativeLayout>
     <!--    <ImageView-->
-<!--        android:id="@+id/playBtn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/ic_play"-->
-<!--        android:visibility="gone"-->
-<!--        app:tint="@color/white"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <!--        android:id="@+id/playBtn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/ic_play"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:tint="@color/white"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
-    <ImageView
-        android:id="@+id/iv_love"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/icon_love_fill"
-        android:layout_marginEnd="5dp"
-        app:tint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txtLove"/>
-    <TextView
-        android:id="@+id/txtLove"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rel_love"
+        android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
-        android:text="3K"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:layout_marginBottom="10dp"
-        android:textStyle="bold"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/iv_comment"/>
-    <ImageView
-        android:id="@+id/iv_comment"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_comment"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        app:tint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txtComment"/>
-    <TextView
-        android:id="@+id/txtComment"
-        android:layout_width="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/rel_cmt"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_love"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/_3sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/icon_love_fill"
+            app:layout_constraintBottom_toTopOf="@+id/txtLove"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/txtLove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_love"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="343.5k"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_cmt"
+        android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
-        android:text="223"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/ivShare"/>
-    <ImageView
-        android:id="@+id/ivShare"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_share"
-        android:layout_marginEnd="5dp"
-        app:tint="@color/white"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/rel_share"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_comment"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/_3sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_comment"
+            app:layout_constraintBottom_toTopOf="@+id/txtComment"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/txtComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_comment"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/roboto_medium"
+            android:text="223"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_share"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_100sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivShare"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="5dp"
+            android:padding="@dimen/_7sdp"
+            android:src="@drawable/ic_share"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
 
     <ImageView
         android:id="@+id/ivRoundProfile"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_profile_n"
+        android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        app:tint="@color/white"
+        android:src="@drawable/ic_profile_n"
+        app:layout_constraintBottom_toTopOf="@+id/txtUsrname"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txtUsrname"/>
+        app:tint="@color/white" />
+
     <TextView
         android:id="@+id/txtUsrname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:fontFamily="@font/roboto_medium"
         android:text="Username"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginStart="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txtCaption"/>
+        app:layout_constraintBottom_toTopOf="@+id/txtCaption"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/txtCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_medium"
         android:text="CaptionCaption"
-        android:textSize="15sp"
         android:textColor="@color/white"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/ivMusic"/>
+        app:layout_constraintBottom_toTopOf="@+id/ivMusic"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/ivMusic"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_music"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginBottom="20dp"
-        android:layout_marginStart="5dp"
-        app:tint="@color/white"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/ic_music_note"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+         />
+
     <TextView
         android:id="@+id/txtSiundName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sound Name"
-        android:textSize="15sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
         android:layout_marginBottom="20dp"
-        app:layout_constraintStart_toEndOf="@+id/ivMusic"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_marginStart="@dimen/_5sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Sound Name"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivMusic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

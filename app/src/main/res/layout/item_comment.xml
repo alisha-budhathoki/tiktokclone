@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="username"
+        android:fontFamily="@font/roboto_medium"
         app:layout_constraintStart_toEndOf="@+id/img_pic_cmntr"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="20dp"
@@ -28,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="comment contents"
+        android:fontFamily="@font/roboto_medium"
         app:layout_constraintStart_toEndOf="@+id/img_pic_cmntr"
         app:layout_constraintTop_toBottomOf="@+id/txt_cmntr_name"
         android:layout_marginStart="20dp"/>
@@ -47,6 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10:15"
+        android:fontFamily="@font/roboto_medium"
+
         android:textColor="@color/primaryGrey"
         app:layout_constraintStart_toEndOf="@+id/img_pic_cmntr"
         app:layout_constraintTop_toBottomOf="@+id/txt_comment_content"
@@ -56,6 +60,7 @@
         android:id="@+id/txt_replies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
         app:layout_constraintStart_toEndOf="@+id/img_pic_cmntr"
         app:layout_constraintTop_toBottomOf="@+id/txt_comment_time"
         android:layout_marginStart="20dp"
