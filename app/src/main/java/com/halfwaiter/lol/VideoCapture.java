@@ -7,8 +7,11 @@ import android.hardware.Camera;
 import android.media.MediaRecorder;
 import android.os.Environment;
 import android.util.AttributeSet;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.io.IOException;
 
 public class VideoCapture extends SurfaceView implements SurfaceHolder.Callback {
     private MediaRecorder recorder;
@@ -18,7 +21,7 @@ public class VideoCapture extends SurfaceView implements SurfaceHolder.Callback 
     Boolean isStarted = false;
 
     public static String videoPath = Environment.getExternalStorageDirectory()
-            .getPath() + "/YOUR_VIDEO.mp4";
+            .getAbsolutePath() + "/YOUR_VIDEO.mp4";
 
     public VideoCapture(Context context) {
         super(context);
@@ -63,7 +66,6 @@ public class VideoCapture extends SurfaceView implements SurfaceHolder.Callback 
             e.printStackTrace();
         }
     }
-
     public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
     }
 
@@ -98,6 +100,7 @@ public class VideoCapture extends SurfaceView implements SurfaceHolder.Callback 
 
     public void startCapturingVideo() {
         try {
+            System.out.println("msdjbhd");
             recorder.prepare();
             recorder.start();
             isStarted = true;

@@ -38,8 +38,8 @@ public class MostRecentFragment extends Fragment {
 
         mListRecent = seeNewRecentVideos();
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        recyclerViewRecent.setHasFixedSize(true);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        recyclerViewRecent.setHasFixedSize(false);
         recyclerViewRecent.setLayoutManager(layoutManager);
         mostRecentAdapter = new MostRecentAdapter(getContext(), mListRecent);
         recyclerViewRecent.setAdapter(mostRecentAdapter);

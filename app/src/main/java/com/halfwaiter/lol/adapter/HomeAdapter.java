@@ -93,13 +93,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
             public void onClick(View v) {
                 if (isLiked == false) {
                     isLiked = true;
-                    likesNo = likesNo+ 1;
-                    holder.noLike.setText(String.valueOf(likesNo));
+                    holder.noLike.setText(String.valueOf(homeModel.getNoLikes()+1));
                     holder.icLove.setColorFilter(Color.rgb(255, 0, 0));
                 } else {
                     isLiked = false;
-                    likesNo = likesNo -1;
-                    holder.noLike.setText(String.valueOf(likesNo));
+                    holder.noLike.setText(String.valueOf(homeModel.getNoLikes()));
 
                     holder.icLove.setColorFilter(Color.rgb(255, 255, 255));
                 }
