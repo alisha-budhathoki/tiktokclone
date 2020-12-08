@@ -5,93 +5,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.VideoActivity">
+
     <com.halfwaiter.lol.VideoCapture
         android:id="@+id/videoView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="#00000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="#00000000" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgMusicNot"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:src="@drawable/ic_music_note"
-        app:tint="@color/white"
-        android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:src="@drawable/ic_music_note"
         app:layout_constraintEnd_toStartOf="@+id/txt_sound"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:tint="@color/white" />
 
 
     <TextView
         android:id="@+id/txt_sound"
+        style="@style/TextTitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
         android:text="Sounds"
         android:textColor="@color/white"
-        style="@style/TextTitleStyle"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ToggleButton
         android:id="@+id/stop"
+        style="@style/toggleButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        style="@style/toggleButton"
-        android:background="@drawable/ic_toggle_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/timeSecondsRecycler"
         android:layout_marginBottom="10dp"
-        />
+        android:background="@drawable/ic_toggle_bg"
+        app:layout_constraintBottom_toTopOf="@+id/timeSecondsRecycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textStyle="bold"
+        android:text="Message"
         android:textSize="30sp"
+        android:textStyle="bold"
         android:visibility="gone"
-        android:text="Message"/>
-    <TextView
-        android:onClick="swapCamera"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/cameraSwap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Swap Camera"
-        android:textSize="20sp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_marginStart="10dp"
+        android:onClick="swapCamera"
+        app:srcCompat="@drawable/ic_swap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timeSecondsRecycler"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
         android:id="@+id/galleryTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginBottom="10dp"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:text="Gallery"/>
+        android:layout_marginRight="@dimen/_10sdp"
+        android:src="@drawable/bkgrnd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

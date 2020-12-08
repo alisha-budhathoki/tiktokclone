@@ -19,6 +19,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -47,13 +48,14 @@ public class VideoActivity extends Activity {
     BottomSheetBehavior sheetBehavior;
     public final static int PICK_PHOTO_CODE = 1046;
     int camId = 0;
-    TextView message, gallery;
+    TextView message;
 
     private String[] myTimeTitle = new String[]{"15s", "60s"};
     TimeLengthAdapter timeLengthAdapter;
     RecyclerView recyclerViewTime;
     ArrayList<TimeSecond> mListTimeLength;
-    TextView soundTxt, swapCamera;
+    TextView soundTxt;
+    ImageView swapImg, gallery;
 
 
     @Override
@@ -62,6 +64,7 @@ public class VideoActivity extends Activity {
         setContentView(R.layout.activity_video);
         soundTxt = findViewById(R.id.txt_sound);
         gallery = findViewById(R.id.galleryTxt);
+        swapImg = findViewById(R.id.cameraSwap);
 //        try {
 //            releaseCameraAndPreview();
 //            if (camId == 0) {
@@ -79,13 +82,18 @@ public class VideoActivity extends Activity {
 //        System.out.println("sdnjsd");
 //        camera.unlock();
 //        Log.i(null , "Video starting");
+//        swapImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         mCount = 15;
         recyclerViewTime = findViewById(R.id.timeSecondsRecycler);
         mListTimeLength = seeTimeLength();
         timeLengthAdapter = new TimeLengthAdapter(VideoActivity.this, mListTimeLength);
         recyclerViewTime.setAdapter(timeLengthAdapter);
         recyclerViewTime.setLayoutManager(new LinearLayoutManager(VideoActivity.this, LinearLayoutManager.HORIZONTAL, false));
-        swapCamera = findViewById(R.id.cameraSwap);
         videoCapture = (VideoCapture) findViewById(R.id.videoView);
         mToggleButton = (Button) findViewById(R.id.stop);
         message = findViewById(R.id.msg);
