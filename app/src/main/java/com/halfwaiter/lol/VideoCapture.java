@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -18,40 +19,55 @@ public class VideoCapture extends SurfaceView implements SurfaceHolder.Callback 
     private SurfaceHolder holder;
     public Context context;
     private Camera camera;
+    public static boolean isFront = false;
     Boolean isStarted = false;
 
     public static String videoPath = Environment.getExternalStorageDirectory()
             .getAbsolutePath() + "/YOUR_VIDEO.mp4";
 
-    public VideoCapture(Context context) {
-        super(context);
-        this.context = context;
-        init();
-        recorder.setPreviewDisplay(holder.getSurface());
-
-    }
+//    public VideoCapture(Context context) {
+//        super(context);
+//        this.context = context;
+////        camera.release();
+//        init(1);
+//        Toast.makeText(context, "I am constructor", Toast.LENGTH_SHORT).show();
+//
+//        //        recorder.setPreviewDisplay(holder.getSurface());
+//
+//    }
 
     public VideoCapture(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
-        recorder.setPreviewDisplay(holder.getSurface());
+//        camera.release();
+        init(isFront ? 0 : 1);
+        Toast.makeText(context, "Front : "+isFront, Toast.LENGTH_SHORT).show();
+
+//        recorder.setPreviewDisplay(holder.getSurface());
     }
 
-    public VideoCapture(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init();
-        recorder.setPreviewDisplay(holder.getSurface());
-    }
+//    public VideoCapture(Context context, AttributeSet attrs, int defStyle) {
+//        super(context, attrs, defStyle);
+////        camera.release();
+//        init(1);
+//        Toast.makeText(context, "I am constructor2", Toast.LENGTH_SHORT).show();
+//
+////        recorder.setPreviewDisplay(holder.getSurface());
+//    }
 
     @SuppressLint("NewApi")
-    public void init() {
+    public void init(int camId) {
         try {
+//            camera.stopPreview();
+//            camera.release();
+//            camera.release();
             System.out.println("dsjd" + videoPath);
             recorder = new MediaRecorder();
+
             holder = getHolder();
             holder.addCallback(this);
             holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-            camera = Camera.open();
+            recorder.setPreviewDisplay(holder.getSurface());
+            camera = Camera.open(camId);
             if (android.os.Build.VERSION.SDK_INT > 7)
                 camera.setDisplayOrientation(90);
             System.out.println("sdnjsd");
@@ -72,7 +88,6 @@ public class VideoCapture extends SurfaceView implements SurfaceHolder.Callback 
     public void surfaceCreated(SurfaceHolder mHolder) {
 
         try {
-            System.out.println("dsnjbd");
 //            recorder.setProfile(CamcorderProfile.get(-1,CamcorderProfile.QUALITY_HIGH));
 //            recorder.setPreviewDisplay(mHolder.getSurface());
 //            recorder.start();

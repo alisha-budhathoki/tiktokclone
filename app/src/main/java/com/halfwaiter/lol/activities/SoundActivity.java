@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -31,13 +32,15 @@ public class SoundActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound);
         TextView toolbar_title = findViewById(R.id.toolbar_title);
+        ImageView imgSound = findViewById(R.id.imgSound);
+        imgSound.setVisibility(View.VISIBLE);
         toolbar_title.setText("Sounds");
 
 //        setting the size of drawable dynamically
 //        Drawable dr = ContextCompat.getDrawable(SoundActivity.this, R.drawable.ic_music);
 ////        dr.setBounds(0,0,120,120);
 //        toolbar_title.setCompoundDrawables( dr,null, null, null); //setting drawable on left programeticall
-        toolbar_title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_music, 0, 0, 0); //setting drawable on left programetically
+//        toolbar_title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_music, 0, 0, 0); //setting drawable on left programetically
 
         viewPagerSound = (ViewPager) findViewById(R.id.viewPagerSound);
         tabLayout = findViewById(R.id.tab_sound);

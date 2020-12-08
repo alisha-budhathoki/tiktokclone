@@ -12,6 +12,7 @@ import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -42,9 +43,10 @@ public class VideoActivity extends Activity {
     private View mToggleButton;
     TimerThread mTimer;
     int mCount;
+    private Camera camera;
     BottomSheetBehavior sheetBehavior;
     public final static int PICK_PHOTO_CODE = 1046;
-
+    int camId = 0;
     TextView message, gallery;
 
     private String[] myTimeTitle = new String[]{"15s", "60s"};
@@ -60,6 +62,22 @@ public class VideoActivity extends Activity {
         setContentView(R.layout.activity_video);
         soundTxt = findViewById(R.id.txt_sound);
         gallery = findViewById(R.id.galleryTxt);
+//        try {
+//            releaseCameraAndPreview();
+//            if (camId == 0) {
+//                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+//            }
+//            else {
+//                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
+//            }
+//        } catch (Exception e) {
+//            Log.e(getString(R.string.app_name), "failed to open Camera");
+//            e.printStackTrace();
+//        }
+//        camera = Camera.open(0);
+//        camera.setDisplayOrientation(90);
+//        System.out.println("sdnjsd");
+//        camera.unlock();
 //        Log.i(null , "Video starting");
         mCount = 15;
         recyclerViewTime = findViewById(R.id.timeSecondsRecycler);
@@ -71,11 +89,11 @@ public class VideoActivity extends Activity {
         videoCapture = (VideoCapture) findViewById(R.id.videoView);
         mToggleButton = (Button) findViewById(R.id.stop);
         message = findViewById(R.id.msg);
-
+//        videoCapture = new VideoCapture(VideoActivity.this);
         mTimer = new TimerThread();
         mTimer.setOnAlarmListener(mSTimer_OnAlarm);
         mTimer.setPeriod(1000);
-
+//        videoCapture.startCapturingVideo();
         soundTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +170,15 @@ public class VideoActivity extends Activity {
 
     }
 
+//    private void releaseCameraAndPreview() {
+////        myCameraPreview.setCamera(null);
+//        if (camera != null) {
+//            camera.startPreview();
+//            camera.release();
+//            camera = null;
+//        }
+//    }
+
     private int getCurrentItem() {
         return ((LinearLayoutManager) recyclerViewTime.getLayoutManager())
                 .findFirstVisibleItemPosition();
@@ -189,4 +216,13 @@ public class VideoActivity extends Activity {
         }
     };
 
+    public void swapCamera(View view) {
+        videoCapture.init(0);
+        VideoCapture.isFront = !VideoCapture.isFront;
+//        if (VideoCapture.isFront == false)
+//        VideoCapture.isFront = true;
+//        else
+//            VideoCapture.isFront = false;
+        Toast.makeText(this, "swapped clicked", Toast.LENGTH_SHORT).show();
+    }
 }
