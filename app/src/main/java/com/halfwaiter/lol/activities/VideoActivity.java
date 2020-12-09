@@ -169,6 +169,7 @@ public class VideoActivity extends Activity {
 
     }
 
+
 //    private void releaseCameraAndPreview() {
 ////        myCameraPreview.setCamera(null);
 //        if (camera != null) {
