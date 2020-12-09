@@ -65,29 +65,7 @@ public class VideoActivity extends Activity {
         soundTxt = findViewById(R.id.txt_sound);
         gallery = findViewById(R.id.galleryTxt);
         swapImg = findViewById(R.id.cameraSwap);
-//        try {
-//            releaseCameraAndPreview();
-//            if (camId == 0) {
-//                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-//            }
-//            else {
-//                camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-//            }
-//        } catch (Exception e) {
-//            Log.e(getString(R.string.app_name), "failed to open Camera");
-//            e.printStackTrace();
-//        }
-//        camera = Camera.open(0);
-//        camera.setDisplayOrientation(90);
-//        System.out.println("sdnjsd");
-//        camera.unlock();
-//        Log.i(null , "Video starting");
-//        swapImg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+
         mCount = 15;
         recyclerViewTime = findViewById(R.id.timeSecondsRecycler);
         mListTimeLength = seeTimeLength();
@@ -95,6 +73,8 @@ public class VideoActivity extends Activity {
         recyclerViewTime.setAdapter(timeLengthAdapter);
         recyclerViewTime.setLayoutManager(new LinearLayoutManager(VideoActivity.this, LinearLayoutManager.HORIZONTAL, false));
         videoCapture = (VideoCapture) findViewById(R.id.videoView);
+
+
         mToggleButton = (Button) findViewById(R.id.stop);
         message = findViewById(R.id.msg);
 //        videoCapture = new VideoCapture(VideoActivity.this);
@@ -176,6 +156,8 @@ public class VideoActivity extends Activity {
             }
 
         });
+//        videoCapture.startCapturingVideo();
+//        counterIncrease();
 
 
     }
@@ -208,6 +190,7 @@ public class VideoActivity extends Activity {
     private void counterIncrease() {
         mTimer.start();
     }
+
     private void counterStop() {
         mTimer.stop();
     }
