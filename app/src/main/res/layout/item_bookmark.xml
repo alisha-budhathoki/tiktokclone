@@ -85,14 +85,23 @@
             android:layout_weight="0.5"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/txt_like_b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <xyz.hanks.library.bang.SmallBangView
+
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/smallbangBookmark"
                 android:layout_gravity="top|end"
                 android:layout_margin="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/txt_following"
-                android:src="@drawable/icon_love_fill" />
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginRight="@dimen/_2sdp">
+
+                <ImageView
+                    android:padding="@dimen/_10sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/heart_selector" />
+            </xyz.hanks.library.bang.SmallBangView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"

@@ -3,6 +3,16 @@ package com.halfwaiter.lol.model;
 import java.util.List;
 
 public class ExploreModel {
+    private boolean isPlaying;
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
+    }
+
     private String soundName, soundLength;
     private boolean isReacted;
 

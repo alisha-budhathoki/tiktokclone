@@ -20,9 +20,9 @@ import com.halfwaiter.lol.model.ExploreModel;
 import java.util.ArrayList;
 
 public class ExploreFragment extends Fragment {
-    private String[] soundLength = new String[]{"00:15", "01:16"};
-    private String[] soundName = new String[]{"Sound name", "sound name"};
-    private String[] catName = new String[]{"Romantic", "Pop"};
+    private String[] soundLength = new String[]{"00:15","0:45", "01:16"};
+    private String[] soundName = new String[]{"Sound name","bsdabhgdsv" ,"sound name"};
+    private String[] catName = new String[]{"Romantic", "Pop", "remix"};
 
     ExploreAdapter exploreAdapter;
     RecyclerView recyclerviewExplore;
@@ -44,7 +44,7 @@ public class ExploreFragment extends Fragment {
 
     private ArrayList<ExploreModel> seeBookmarkData() {
         ArrayList<ExploreModel> listExplore = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             ExploreModel exploreModel = new ExploreModel();
             System.out.println("sjhdhjbd"+soundName[0]+soundName[1]);
             exploreModel.setSoundLength(soundLength[i]);

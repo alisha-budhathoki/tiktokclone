@@ -17,12 +17,17 @@ import com.halfwaiter.lol.model.TrendingModel;
 
 import java.util.List;
 
-public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHolder>{
+import xyz.hanks.library.bang.SmallBangView;
+
+public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHolder> {
     List<ExploreModel> mList;
     Context context;
-    Boolean isLiked = false;
+    Boolean isLiked;
+    Boolean isPlayed = false;
+    private int currentItem = -1;
+    SmallBangView smallBangView;
 
-    public ExploreAdapter(Context context, List<ExploreModel> mList){
+    public ExploreAdapter(Context context, List<ExploreModel> mList) {
         this.context = context;
         this.mList = mList;
     }
@@ -37,23 +42,73 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ExploreAdapter.MyViewHolder holder, final int position) {
-        final ExploreModel exploreModel =mList.get(position);
+
+        final int[] mLastSelected = {-1};
+//        smallBangView.addOnAttachStateChangeListener(this);
+        holder.btnStop.setEnabled(mLastSelected[0] == -1 || mLastSelected[0] == position);
+        final ExploreModel exploreModel = mList.get(position);
         holder.soundExploreLength.setText(exploreModel.getSoundLength());
         holder.soundExploreName.setText(exploreModel.getSoundName());
-        holder.reactExplore.setOnClickListener(new View.OnClickListener() {
+
+        holder.smallBangView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isLiked == false) {
-                    isLiked =true;
-                    holder.reactExplore.setColorFilter(Color.rgb(255, 0, 0));
-                }
-                else {
+                if (holder.smallBangView.isSelected()){
                     isLiked = false;
-                    holder.reactExplore.setColorFilter(Color.rgb(0, 0, 0));
+                    holder.smallBangView.likeAnimation();
+                    holder.smallBangView.setSelected(false);
+                }else{
+                    isLiked = true;
+                    holder.smallBangView.likeAnimation();
+                    holder.smallBangView.setSelected(true);
                 }
+            }
+        });
+//        holder.reactExplore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isLiked == false) {
+//                    isLiked = true;
+//                    holder.reactExplore.setColorFilter(Color.rgb(255, 0, 0));
+//                } else {
+//                    isLiked = false;
+//                    holder.reactExplore.setColorFilter(Color.rgb(0, 0, 0));
+//                }
+//
+//            }
+//        });
+
+        if (currentItem != -1) {
+            if (currentItem == position) {
+                holder.btnStop.setVisibility(View.VISIBLE);
+                holder.btnPlay.setVisibility(View.GONE);
+            } else {
+                holder.btnStop.setVisibility(View.GONE);
+                holder.btnPlay.setVisibility(View.VISIBLE);
+            }
+        }
+
+        holder.btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                currentItem = holder.getAdapterPosition();
+                notifyItemChanged(currentItem);
+                notifyDataSetChanged();
 
             }
         });
+
+        holder.btnStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                holder.btnStop.setVisibility(View.GONE);
+                holder.btnPlay.setVisibility(View.VISIBLE);
+
+            }
+        });
+
     }
 
 
@@ -61,15 +116,21 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
     public int getItemCount() {
         return mList.size();
     }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recyclerView;
-        ImageView reactExplore;
+        ImageView  btnPlay, btnStop, like;
         TextView soundExploreLength, soundExploreName;
+        SmallBangView smallBangView;
+
         public MyViewHolder(View itemView) {
             super(itemView);
+            smallBangView = itemView.findViewById(R.id.smallbang);
             soundExploreLength = itemView.findViewById(R.id.txt_sndlngth_explr);
             soundExploreName = itemView.findViewById(R.id.txt_soundnm_explr);
-            reactExplore = itemView.findViewById(R.id.txt_like_explr);
+//            reactExplore = itemView.findViewById(R.id.txt_like_explr);
+            btnPlay = itemView.findViewById(R.id.fabMusicPlay);
+            btnStop = itemView.findViewById(R.id.fabMusicStop);
         }
     }
 }

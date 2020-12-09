@@ -18,6 +18,8 @@ import com.halfwaiter.lol.model.TrendingModel;
 
 import java.util.List;
 
+import xyz.hanks.library.bang.SmallBangView;
+
 public class BookmarkedAdapter extends Adapter<BookmarkedAdapter.MyViewHolder> {
     List<BookmarkModel> mList;
     Context context;
@@ -41,21 +43,34 @@ public class BookmarkedAdapter extends Adapter<BookmarkedAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull final BookmarkedAdapter.MyViewHolder holder, final int position) {
         final BookmarkModel bookmarkModel = mList.get(position);
         holder.soundname.setText(bookmarkModel.getSoundNameBookmark());
-        holder.soundlength.setText(bookmarkModel.getSoundLengthBookmark());
-            holder.reactBookmark.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isLiked == false) {
-                        isLiked =true;
-                        holder.reactBookmark.setColorFilter(Color.rgb(255, 0, 0));
-                    }
-                    else {
-                        isLiked = false;
-                        holder.reactBookmark.setColorFilter(Color.rgb(0, 0, 0));
-                    }
-
+        holder.smallBangView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.smallBangView.isSelected()) {
+                    isLiked = false;
+                    holder.smallBangView.likeAnimation();
+                    holder.smallBangView.setSelected(false);
+                } else {
+                    isLiked = true;
+                    holder.smallBangView.likeAnimation();
+                    holder.smallBangView.setSelected(true);
                 }
-            });
+            }
+        });
+        holder.soundlength.setText(bookmarkModel.getSoundLengthBookmark());
+//        holder.reactBookmark.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isLiked == false) {
+//                    isLiked = true;
+//                    holder.reactBookmark.setColorFilter(Color.rgb(255, 0, 0));
+//                } else {
+//                    isLiked = false;
+//                    holder.reactBookmark.setColorFilter(Color.rgb(0, 0, 0));
+//                }
+//
+//            }
+//        });
     }
 
 
@@ -69,12 +84,16 @@ public class BookmarkedAdapter extends Adapter<BookmarkedAdapter.MyViewHolder> {
         TextView soundname, soundlength;
         Boolean isReactedBookmark;
         ImageView reactBookmark;
+        SmallBangView smallBangView;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
             soundname = itemView.findViewById(R.id.txt_sound_nameb);
             soundlength = itemView.findViewById(R.id.txt_sound_lengthb);
-            reactBookmark = itemView.findViewById(R.id.txt_like_b);
+//            reactBookmark = itemView.findViewById(R.id.txt_like_b);
+            smallBangView = itemView.findViewById(R.id.smallbangBookmark);
+
         }
 
 
