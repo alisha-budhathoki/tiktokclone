@@ -36,7 +36,9 @@ import com.volokh.danylo.video_player_manager.ui.VideoPlayerView;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
+import xyz.hanks.library.bang.SmallBangView;
+
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
     List<HomeModel> mList;
     Context context;
     Boolean isLiked = false;
@@ -86,22 +88,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
         holder.captions.setText(homeModel.getCaption());
         holder.noLike.setText(String.valueOf(homeModel.getNoLikes()));
         holder.noComment.setText(homeModel.getNoComments());
-         likesNo = homeModel.getNoLikes();
-        System.out.println("sndjsb"+likesNo);
-        holder.icLove.setOnClickListener(new View.OnClickListener() {
+        likesNo = homeModel.getNoLikes();
+        System.out.println("sndjsb" + likesNo);
+        holder.smallBangViewHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isLiked == false) {
-                    isLiked = true;
-                    holder.noLike.setText(String.valueOf(homeModel.getNoLikes()+1));
-                    holder.icLove.setColorFilter(Color.rgb(255, 0, 0));
-                } else {
+                if (holder.smallBangViewHome.isSelected()) {
                     isLiked = false;
+                    holder.smallBangViewHome.likeAnimation();
+                    holder.smallBangViewHome.setSelected(false);
                     holder.noLike.setText(String.valueOf(homeModel.getNoLikes()));
-
-                    holder.icLove.setColorFilter(Color.rgb(255, 255, 255));
+                } else {
+                    isLiked = true;
+                    holder.smallBangViewHome.likeAnimation();
+                    holder.smallBangViewHome.setSelected(true);
+                    holder.noLike.setText(String.valueOf(homeModel.getNoLikes() + 1));
                 }
-
             }
         });
         final FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
@@ -111,7 +113,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
             public void onClick(View v) {
                 System.out.println("knshd");
                 BottomSheetDialogFragment bottomSheetDialogFragment = new ExampleBottomSheetDialog();
-                bottomSheetDialogFragment.show(((FragmentActivity)context).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+                bottomSheetDialogFragment.show(((FragmentActivity) context).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
 
             }
         });
@@ -149,7 +151,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recyclerView;
-        ImageView userImage, icLove, icComment, icShare;
+        ImageView userImage, icComment, icShare;
+        SmallBangView smallBangViewHome;
+
         VideoView lolVideo;
         ConstraintLayout constraintLayout;
         RelativeLayout relPlayPause;
@@ -160,7 +164,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>{
         public MyViewHolder(View itemView) {
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.constraintMain);
-            icLove = itemView.findViewById(R.id.iv_love);
+            smallBangViewHome = itemView.findViewById(R.id.iv_love);
             icShare = itemView.findViewById(R.id.ivShare);
             lolVideo = itemView.findViewById(R.id.myvideoview);
             userImage = (ImageView) itemView.findViewById(R.id.ivRoundProfile);

@@ -25,7 +25,6 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
     Boolean isLiked;
     Boolean isPlayed = false;
     private int currentItem = -1;
-    SmallBangView smallBangView;
 
     public ExploreAdapter(Context context, List<ExploreModel> mList) {
         this.context = context;

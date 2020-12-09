@@ -49,17 +49,26 @@
         app:layout_constraintBottom_toTopOf="@+id/rel_cmt"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
+        <xyz.hanks.library.bang.SmallBangView
+
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_5sdp"
             android:id="@+id/iv_love"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="top|end"
+            android:layout_margin="@dimen/_5sdp"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="@dimen/_3sdp"
             android:padding="@dimen/_5sdp"
-            android:src="@drawable/icon_love_fill"
-            app:layout_constraintBottom_toTopOf="@+id/txtLove"
-            app:tint="@color/white" />
+            >
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="@dimen/_3sdp"
+                android:src="@drawable/heart_selector" />
+        </xyz.hanks.library.bang.SmallBangView>
         <TextView
             android:id="@+id/txtLove"
             android:layout_width="wrap_content"
