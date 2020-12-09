@@ -101,6 +101,7 @@ public class VideoActivity extends Activity {
         mTimer = new TimerThread();
         mTimer.setOnAlarmListener(mSTimer_OnAlarm);
         mTimer.setPeriod(1000);
+//        videoCapture.init(0);
 //        videoCapture.startCapturingVideo();
         soundTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +140,7 @@ public class VideoActivity extends Activity {
                     System.out.println("nksaksa");
                     videoCapture.stopCapturingVideo();
                     setResult(Activity.RESULT_OK);
+                    counterStop();
                     finish();
                 }
 //
@@ -204,8 +206,10 @@ public class VideoActivity extends Activity {
     }
 
     private void counterIncrease() {
-        System.out.println("sbdsb");
         mTimer.start();
+    }
+    private void counterStop() {
+        mTimer.stop();
     }
 
     OnAlarmListener mSTimer_OnAlarm = new OnAlarmListener() {
