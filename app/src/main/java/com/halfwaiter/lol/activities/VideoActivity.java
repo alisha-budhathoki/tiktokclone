@@ -55,7 +55,7 @@ public class VideoActivity extends Activity {
     RecyclerView recyclerViewTime;
     ArrayList<TimeSecond> mListTimeLength;
     TextView soundTxt;
-    ImageView swapImg, gallery;
+    ImageView swapImg, gallery, cross;
 
 
     @Override
@@ -63,6 +63,7 @@ public class VideoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
         soundTxt = findViewById(R.id.txt_sound);
+        cross = findViewById(R.id.ic_cross);
         gallery = findViewById(R.id.galleryTxt);
         swapImg = findViewById(R.id.cameraSwap);
 
@@ -106,6 +107,12 @@ public class VideoActivity extends Activity {
                     startActivityForResult(intent, PICK_PHOTO_CODE);
                 }
 
+            }
+        });
+        cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

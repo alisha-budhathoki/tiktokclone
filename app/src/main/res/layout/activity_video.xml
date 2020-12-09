@@ -17,15 +17,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/ic_cross"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="10dp"
+        android:padding="@dimen/_5sdp"
+        android:src="@drawable/ic_cross"
+        android:tint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
         android:id="@+id/imgMusicNot"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:src="@drawable/ic_music_note"
+        android:tint="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/txt_sound"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -66,11 +79,11 @@
         android:id="@+id/cameraSwap"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:onClick="swapCamera"
-        android:tint="@color/white"
         android:src="@drawable/ic_baseline_swap_calls_24"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -88,8 +101,8 @@
         android:id="@+id/galleryTxt"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_marginBottom="10dp"
         android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/bkgrnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
