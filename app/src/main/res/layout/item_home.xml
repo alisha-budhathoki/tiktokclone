@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="@dimen/_3sdp"
-                android:src="@drawable/heart_selector" />
+                android:src="@drawable/heart_selctor_white" />
         </xyz.hanks.library.bang.SmallBangView>
         <TextView
             android:id="@+id/txtLove"
@@ -143,8 +143,8 @@
 
     <ImageView
         android:id="@+id/ivRoundProfile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_profile_n"

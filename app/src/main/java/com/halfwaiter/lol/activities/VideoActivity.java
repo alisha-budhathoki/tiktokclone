@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -22,6 +23,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -43,7 +45,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 //    private VideoCapture videoCapture;
@@ -51,6 +55,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
     Camera camera;
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
+    private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
 
     Camera.PictureCallback rawCallback;
     Camera.ShutterCallback shutterCallback;
@@ -74,8 +79,8 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
     public static boolean isFront = false;
     Boolean isStarted = false;
 
-    public static String videoPath = Environment.getExternalStorageDirectory()
-            .getAbsolutePath() + "/YOUR_VIDEO.mp4";
+    public static String videoPath;
+
 
     private String[] myTimeTitle = new String[]{"15s", "60s"};
     TimeLengthAdapter timeLengthAdapter;
@@ -83,7 +88,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
     ArrayList<TimeSecond> mListTimeLength;
     TextView soundTxt;
     ImageView swapImg, gallery, cross;
-
+    Uri videoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,9 +188,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 //                    onPageChanged(position);
                 }
 
-//                mCount = 15;
-//                System.out.println("sdsdsujbjkdsjs");
-//                myTimeTitle[0]
             }
 
             @Override
@@ -212,24 +214,27 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         // deprecated setting, but required on Android versions prior to 3.0
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
-//        jpegCallback = new Camera.PictureCallback() {
-//            public void onPictureTaken(byte[] data, Camera camera) {
-//                FileOutputStream outStream = null;
-//                try {
-//                    outStream = new FileOutputStream(String.format("/sdcard/%d.jpg", System.currentTimeMillis()));
-//                    outStream.write(data);
-//                    outStream.close();
-//                    Log.d("Log", "onPictureTaken - wrote bytes: " + data.length);
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } finally {
-//                }
-//                Toast.makeText(getApplicationContext(), "Picture Saved",Toast.LENGTH_SHORT).show();
-//                refreshCamera();
+    }
+
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        System.out.println("snbhsvsg");
+//        if (requestCode == CAMERA_CAPTURE_VIDEO_REQUEST_CODE) {
+//
+//            if (resultCode == RESULT_OK){
+//                Uri videoUri = data.getData();
+//                launchUploadActivity1(true,videoUri);
 //            }
-//        };
+//        }
+//    }
+
+    private void launchUploadActivity1(boolean isPlaying, Uri uri) {
+
+        Intent i = new Intent(VideoActivity.this, VideoPlayerActivity.class);
+//      i.setData(uri);  // set the uri to intent
+        i.setData(videoUri);
+        startActivity(i);
     }
 
     private int getCurrentItem() {
@@ -242,6 +247,19 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         if (isStarted == true) {
             System.out.println("snidsid");
             try {
+                Bundle bundle = new Bundle();
+                bundle.putString("videoUri", videoPath);
+
+
+//                String extension = MimeTypeMap.getFileExtensionFromUrl(videoPath);
+//                String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+//                Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
+//                mediaIntent.setDataAndType(Uri.parse(videoPath), mimeType);
+//                startActivityForResult(mediaIntent,0);
+                Intent intent = new Intent(this, VideoPlayerActivity.class);
+
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 1);
                 recorder.stop();
                 System.out.println("See here");
                 camera.lock();
@@ -257,6 +275,28 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         try {
             camera.unlock();
             recorder = new MediaRecorder();
+            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES), "LOL");
+
+            if (!mediaStorageDir.exists()) {
+                mediaStorageDir.mkdir();
+                if (!mediaStorageDir.mkdirs()) {
+                    Log.d("MyCameraApp", "failed to create directory");
+                    return;
+                }
+            }
+
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            String i = sdf.format(new Date());
+
+            File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "VID_" + i + ".mp4");
+
+            videoPath = mediaFile.getAbsolutePath();
+
+//            file.getParentFile().mkdirs();
+
             recorder.setOnErrorListener(new MediaRecorder.OnErrorListener() {
 
                 @Override
@@ -268,80 +308,40 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
             recorder.setCamera(camera);
             recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+
+
             System.out.println("js bsdb");
-            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+            recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H263);
             System.out.println("nsjbsd");
             recorder.setMaxDuration(200000); // set to 20000
 
-            String uniqueOutFile = videoPath + System.currentTimeMillis() + ".3gp";
-            File outFile = new File(uniqueOutFile);
-            if (outFile.exists()) {
-                outFile.delete();
-            }
-            recorder.setOutputFile(uniqueOutFile);
+            System.out.println("Saved To : " + videoPath);
+
+            System.out.println("sndbbj");
+
             recorder.setVideoFrameRate(20); // set to 20
             recorder.setVideoSize(surfaceView.getWidth(), surfaceView.getHeight());
-            System.out.println("sndbbj");
+            recorder.setOutputFile(videoPath);
+            recorder.setOrientationHint(90);
+            recorder.prepare();
+//            recorder.setPreviewDisplay(surfaceView.getHolder().getSurface());
 //            recorder.setPreviewDisplay(holder.getSurface());
 //            recorder.setMaxFileSize(50000); // set to 50000
-            recorder.prepare();
 
             recorder.start();
+            isStarted = true;
 
         } catch (IllegalStateException | IOException e) {
             e.printStackTrace();
             camera.lock();
         }
+
+//        Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
+//        startActivityForResult(mediaIntent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
     }
 
-    //
-//    public void init(int camId) {
-//        try {
-////            camera.stopPreview();
-////            camera.release();
-////            camera.release();
-//            System.out.println("dsjd" + videoPath);
-//            Toast.makeText(this, "i am being called!!", Toast.LENGTH_SHORT).show();
-//            recorder = new MediaRecorder();
-//
-//            holder = surfaceView.getHolder();
-//            holder.addCallback(this);
-//            holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-//            recorder.setPreviewDisplay(holder.getSurface());
-//            camera = Camera.open(camId);
-//            if (android.os.Build.VERSION.SDK_INT > 7)
-//                camera.setDisplayOrientation(90);
-//            System.out.println("sdnjsd");
-//            camera.unlock();
-//            System.out.println("camera unlocked");
-//            recorder.setCamera(camera);
-//            recorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
-//            recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-//            recorder.setVideoEncoder(MediaRecorder.VideoEncoder.MPEG_4_SP);
-//            recorder.setOutputFile(videoPath);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//
-////    private void releaseCameraAndPreview() {
-//////        myCameraPreview.setCamera(null);
-////        if (camera != null) {
-////            camera.startPreview();
-////            camera.release();
-////            camera = null;
-////        }
-////    }
-//
-//    private int getCurrentItem() {
-//        return ((LinearLayoutManager) recyclerViewTime.getLayoutManager())
-//                .findFirstVisibleItemPosition();
-//    }
-//
-//
     private ArrayList<TimeSecond> seeTimeLength() {
         ArrayList<TimeSecond> listTimes = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
@@ -387,7 +387,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         //swap the id of the camera to be used
         if (camId == Camera.CameraInfo.CAMERA_FACING_BACK) {
             camId = Camera.CameraInfo.CAMERA_FACING_FRONT;
-        }else {
+        } else {
             camId = Camera.CameraInfo.CAMERA_FACING_BACK;
         }
         try {
@@ -399,78 +399,11 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
             camera.setPreviewDisplay(surfaceView.getHolder());
             //Then resume preview...
             camera.startPreview();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { e.printStackTrace(); }}
-//        Previ mPreview = new CameraPreview(this, mCamera);
-//        preview = (FrameLayout) this.findViewById(R.id.camera_previeww);
-//        preview.removeAllViews();
-//        preview.addView(mPreview);
+    }
 
-//        if (VideoCapture.isFront == false)
-//        VideoCapture.isFront = true;
-//        else
-//            VideoCapture.isFront = false;
-//        Toast.makeText(this, "swapped clicked", Toast.LENGTH_SHORT).show();
-//    }
-
-
-
-//
-//    @Override
-//    public void surfaceCreated(SurfaceHolder holder) {
-//        try {
-//
-//            Toast.makeText(this, "i am calling", Toast.LENGTH_SHORT).show();
-//            // open the camera
-//            camera = Camera.open();
-//        } catch (RuntimeException e) {
-//            // check for exceptions
-//            System.err.println(e);
-//            return;
-//        }
-//        Camera.Parameters param;
-//        param = camera.getParameters();
-//
-//        // modify parameter
-//        param.setPreviewSize(352, 288);
-//        camera.setParameters(param);
-//        try {
-//            // The Surface has been created, now tell the camera where to draw
-//            // the preview.
-//            camera.setPreviewDisplay(holder);
-//            camera.startPreview();
-//        } catch (Exception e) {
-//            // check for exceptions
-//            System.err.println(e);
-//            return;
-//        }
-//    }
-//
-//    @Override
-//    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-//
-//    }
-//
-//    @Override
-//    public void surfaceDestroyed(SurfaceHolder holder) {
-//        if (recorder != null) {
-//            stopCapturingVideo();
-//            recorder.release();
-//            camera.lock();
-//            camera.release();
-//            recorder = null;
-//        }
-//    }
-//
-//    @Override
-//    public void onPointerCaptureChanged(boolean hasCapture) {
-//
-//    }
-
-//    public void captureImage(View v) throws IOException {
-//        //take the picture
-//        camera.takePicture(null, null, jpegCallback);
-//    }
 
     public void refreshCamera() {
         if (surfaceHolder.getSurface() == null) {
@@ -485,9 +418,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
             // ignore: tried to stop a non-existent preview
         }
 
-        // set preview size and make any resize, rotate or
-        // reformatting changes here
-        // start preview with new settings
         try {
             camera.setPreviewDisplay(surfaceHolder);
             camera.startPreview();
@@ -571,6 +501,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
     public void surfaceDestroyed(SurfaceHolder holder) {
         // stop preview and release camera
+        System.out.println("dbhdfjhd");
         camera.stopPreview();
         camera.release();
         camera = null;

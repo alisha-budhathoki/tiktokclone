@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     Context context;
-    private int[] usePic = new int[]{R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile, R.drawable.ic_profile};
+    private int[] usePic = new int[]{R.drawable.ic_profile_n, R.drawable.ic_profile_n, R.drawable.ic_profile_n, R.drawable.ic_profile_n, R.drawable.ic_profile_n};
     private int[] lolVideos = new int[]{R.raw.video5, R.raw.video5, R.raw.video5, R.raw.video5, R.raw.video5};
     private String[] usernames = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
     private String[] captions = new String[]{"John", "Johnny", "Johnny", "Johnny", "Johnny"};
