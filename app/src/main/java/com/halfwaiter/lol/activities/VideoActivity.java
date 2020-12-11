@@ -273,6 +273,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
     public void startCapturingVideo() {
         try {
+            swapImg.setVisibility(View.GONE);
             camera.unlock();
             recorder = new MediaRecorder();
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
