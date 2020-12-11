@@ -33,28 +33,34 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_music_note" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabMusicPlay"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="100dp"
                 android:layout_gravity="center"
-                android:backgroundTint="#800000"
-                app:borderWidth="0dp"
-                app:fabSize="mini"
-                app:maxImageSize="@dimen/_22sdp"
-                app:srcCompat="@drawable/ic_play_short" />
+                android:layout_width="25dp"
+                android:background="@color/white"
+                android:layout_height="25dp">
+                <ImageView
+                    android:id="@+id/fabMusicPlay"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_baseline_play_circle_filled_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/fabMusicStop"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@color/white"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_baseline_stop_circle_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabMusicStop"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_gravity="center"
-                android:backgroundTint="#800000"
-                android:visibility="gone"
-                app:borderWidth="0dp"
-                app:fabSize="mini"
-                app:maxImageSize="@dimen/_22sdp"
-                app:srcCompat="@drawable/ic_baseline_stop_24" />
+            </androidx.cardview.widget.CardView>
+
         </androidx.cardview.widget.CardView>
 
         <RelativeLayout
