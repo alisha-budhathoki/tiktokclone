@@ -308,21 +308,14 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
             recorder.setCamera(camera);
             recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-
-
-            System.out.println("js bsdb");
             recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H263);
             System.out.println("nsjbsd");
-            recorder.setMaxDuration(200000); // set to 20000
+            recorder.setVideoSize(640, 480);
+            recorder.setVideoFrameRate(16); //might be auto-determined due to lighting
+            recorder.setVideoEncodingBitRate(3000000);
+            recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);// MPEG_4_SP
+            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
-            System.out.println("Saved To : " + videoPath);
-
-            System.out.println("sndbbj");
-
-            recorder.setVideoFrameRate(20); // set to 20
-            recorder.setVideoSize(surfaceView.getWidth(), surfaceView.getHeight());
             recorder.setOutputFile(videoPath);
             recorder.setOrientationHint(90);
             recorder.prepare();
