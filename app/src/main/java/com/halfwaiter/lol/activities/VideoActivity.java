@@ -69,6 +69,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
     BottomSheetBehavior sheetBehavior;
     public final static int PICK_PHOTO_CODE = 1046;
     int camId = 0;
+    int camDegree = 90;
     TextView message;
     private MediaRecorder recorder;
     private SurfaceHolder holder;
@@ -287,7 +288,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                 }
             }
 
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
             String i = sdf.format(new Date());
 
@@ -318,7 +318,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
             recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
             recorder.setOutputFile(videoPath);
-            recorder.setOrientationHint(90);
+            recorder.setOrientationHint(camDegree);
             recorder.prepare();
 //            recorder.setPreviewDisplay(surfaceView.getHolder().getSurface());
 //            recorder.setPreviewDisplay(holder.getSurface());
@@ -371,6 +371,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
     };
 
     public void swapCamera(View view) {
+        System.out.println("switching camera");
         Log.i("nsasabsa", "Switching Camera");
         if (camera != null) {
             camera.stopPreview();
@@ -381,11 +382,17 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         //swap the id of the camera to be used
         if (camId == Camera.CameraInfo.CAMERA_FACING_BACK) {
             camId = Camera.CameraInfo.CAMERA_FACING_FRONT;
+            camDegree = 270;
+//            System.out.println("asbshd"+camDegree);
         } else {
             camId = Camera.CameraInfo.CAMERA_FACING_BACK;
+            camDegree = 90;
+//            System.out.println("asbsddfshd"+camDegree);
+
         }
         try {
             camera = Camera.open(camId);
+//            System.out.println("sdanjbhsbcount"+ camId);
             //mCamera.setDisplayOrientation(90);
             //You must get the holder of SurfaceView!!!
             setCameraDisplayOrientation();
@@ -431,7 +438,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
             System.out.println("set camer display orientation -- camera null");
             return;
         }
-
+        System.out.println("nbsds");
         Camera.CameraInfo info = new Camera.CameraInfo();
         Camera.getCameraInfo(0, info);
 
@@ -456,10 +463,13 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         }
 
         int result;
+        System.out.println("sbsdhjash"+info.facing);
         if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            System.out.println("jnbsdds");
             result = (info.orientation + degrees) % 360;
             result = (360 - result) % 360;  // compensate the mirror
         } else {  // back-facing
+            System.out.println("sadns");
             result = (info.orientation - degrees + 360) % 360;
         }
         camera.setDisplayOrientation(result);
