@@ -201,10 +201,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         });
 
 
-//        videoCapture.startCapturingVideo();
-//        counterIncrease();
-
-
         surfaceView = findViewById(R.id.videoView);
         surfaceHolder = surfaceView.getHolder();
 
@@ -217,18 +213,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
     }
 
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        System.out.println("snbhsvsg");
-//        if (requestCode == CAMERA_CAPTURE_VIDEO_REQUEST_CODE) {
-//
-//            if (resultCode == RESULT_OK){
-//                Uri videoUri = data.getData();
-//                launchUploadActivity1(true,videoUri);
-//            }
-//        }
-//    }
 
     private void launchUploadActivity1(boolean isPlaying, Uri uri) {
 
@@ -252,11 +236,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                 bundle.putString("videoUri", videoPath);
 
 
-//                String extension = MimeTypeMap.getFileExtensionFromUrl(videoPath);
-//                String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-//                Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
-//                mediaIntent.setDataAndType(Uri.parse(videoPath), mimeType);
-//                startActivityForResult(mediaIntent,0);
                 Intent intent = new Intent(this, VideoPlayerActivity.class);
 
                 intent.putExtras(bundle);
@@ -387,14 +366,10 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         } else {
             camId = Camera.CameraInfo.CAMERA_FACING_BACK;
             camDegree = 90;
-//            System.out.println("asbsddfshd"+camDegree);
 
         }
         try {
             camera = Camera.open(camId);
-//            System.out.println("sdanjbhsbcount"+ camId);
-            //mCamera.setDisplayOrientation(90);
-            //You must get the holder of SurfaceView!!!
             setCameraDisplayOrientation();
 
             camera.setPreviewDisplay(surfaceView.getHolder());
@@ -463,7 +438,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         }
 
         int result;
-        System.out.println("sbsdhjash"+info.facing);
+        System.out.println("sbsdhjash" + info.facing);
         if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
             System.out.println("jnbsdds");
             result = (info.orientation + degrees) % 360;
@@ -505,7 +480,6 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
     public void surfaceDestroyed(SurfaceHolder holder) {
         // stop preview and release camera
-        System.out.println("dbhdfjhd");
         camera.stopPreview();
         camera.release();
         camera = null;
