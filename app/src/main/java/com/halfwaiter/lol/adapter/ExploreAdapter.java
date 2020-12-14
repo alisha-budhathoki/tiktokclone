@@ -1,10 +1,15 @@
 package com.halfwaiter.lol.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,9 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.halfwaiter.lol.R;
+import com.halfwaiter.lol.activities.VideoActivity;
 import com.halfwaiter.lol.model.ExploreModel;
 import com.halfwaiter.lol.model.TrendingModel;
 
+import java.io.IOException;
 import java.util.List;
 
 import xyz.hanks.library.bang.SmallBangView;
@@ -25,6 +32,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
     Boolean isLiked;
     Boolean isPlayed = false;
     private int currentItem = -1;
+    public static MediaPlayer mediaPlayer = new MediaPlayer();
 
     public ExploreAdapter(Context context, List<ExploreModel> mList) {
         this.context = context;
@@ -52,11 +60,11 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
         holder.smallBangView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.smallBangView.isSelected()){
+                if (holder.smallBangView.isSelected()) {
                     isLiked = false;
                     holder.smallBangView.likeAnimation();
                     holder.smallBangView.setSelected(false);
-                }else{
+                } else {
                     isLiked = true;
                     holder.smallBangView.likeAnimation();
                     holder.smallBangView.setSelected(true);
@@ -86,14 +94,46 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
                 holder.btnPlay.setVisibility(View.VISIBLE);
             }
         }
+        final String urls = exploreModel.getSoundUrl();
+        final String musicName = exploreModel.getSoundName();
+//        final MediaPlayer mPlayer = new MediaPlayer();
+
+//        final Bundle bundle = new Bundle();
+//        bundle.putString("audiourl", urls);
+//        bundle.putBoolean("isSound", true);
+//        System.out.println("sadjbs"+ urls);
+//
 
         holder.btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                System.out.println("kjsjsbjd");
+                holder.btnPlay.setVisibility(View.GONE);
+                holder.btnStop.setVisibility(View.VISIBLE);
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                    mediaPlayer.reset();
+                }
                 currentItem = holder.getAdapterPosition();
                 notifyItemChanged(currentItem);
                 notifyDataSetChanged();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                try {
+                    mediaPlayer.setDataSource(urls);
+                    System.out.println("ksdajnsd");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    System.out.println("sdnjab");
+                    mediaPlayer.prepare(); // might take long! (for buffering, etc)
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                mediaPlayer.start();
+                System.out.println("sjhjsdss" + mediaPlayer);
+
 
             }
         });
@@ -101,13 +141,33 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
         holder.btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("jnbhfdb");
 
                 holder.btnStop.setVisibility(View.GONE);
                 holder.btnPlay.setVisibility(View.VISIBLE);
 
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                    mediaPlayer.reset();
+                }
+//                mPlayer.release();
+                System.out.println("sjhjs" + mediaPlayer);
+
+
             }
         });
+        holder.btnuseSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent videoIntent = new Intent(context, VideoActivity.class);
+                videoIntent.putExtra("audiourl", urls);
+                videoIntent.putExtra("isSound", "1");
+                videoIntent.putExtra("audioName", musicName);
 
+//                videoIntent.putExtras(bundle);
+                context.startActivity(videoIntent);
+            }
+        });
     }
 
 
@@ -118,9 +178,10 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         RecyclerView recyclerView;
-        ImageView  btnPlay, btnStop, like;
+        ImageView btnPlay, btnStop, like;
         TextView soundExploreLength, soundExploreName;
         SmallBangView smallBangView;
+        Button btnuseSound;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -130,6 +191,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
 //            reactExplore = itemView.findViewById(R.id.txt_like_explr);
             btnPlay = itemView.findViewById(R.id.fabMusicPlay);
             btnStop = itemView.findViewById(R.id.fabMusicStop);
+            btnuseSound = itemView.findViewById(R.id.btn_use_sound);
         }
     }
 }

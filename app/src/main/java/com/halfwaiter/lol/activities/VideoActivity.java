@@ -9,7 +9,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
+import android.media.AudioManager;
 import android.media.CamcorderProfile;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
@@ -90,15 +92,42 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
     TextView soundTxt;
     ImageView swapImg, gallery, cross;
     Uri videoUri;
+    Bundle bundle = new Bundle();
+    String musicName, musicUrl;
+    public static MediaPlayer mediaPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
+
+
+//        Bundle bundleget = getIntent().getExtras();
+//        if (bundleget.getBoolean("isSound")) {
+//            String abc = bundleget.getString("audiourl");
+//            System.out.println("nsbsdbs" + abc);
+//        }
+//        else {
+//            System.out.println("snhbds");
+//        }
+
+
         soundTxt = findViewById(R.id.txt_sound);
         cross = findViewById(R.id.ic_cross);
         gallery = findViewById(R.id.galleryTxt);
         swapImg = findViewById(R.id.cameraSwap);
+
+        try {
+            if (getIntent().getExtras().getString("isSound").equals("1")) {
+                musicUrl = getIntent().getExtras().getString("audiourl");
+                musicName = getIntent().getExtras().getString("audioName");
+                System.out.println("SoundUrl : " + musicUrl + musicName);
+                soundTxt.setText(musicName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 //        surfaceView = findViewById(R.id.videoView);
 
@@ -161,6 +190,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                     System.out.println("jnsab");
                     startCapturingVideo();
                     counterIncrease();
+                    exitSound();
                 } else {
                     System.out.println("nksaksa");
                     stopCapturingVideo();
@@ -213,6 +243,24 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
     }
 
+    private void exitSound() {
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            mediaPlayer.setDataSource(musicUrl);
+            System.out.println("ksdadsajnsd");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("sdnjadddb");
+            mediaPlayer.prepare(); // might take long! (for buffering, etc)
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mediaPlayer.start();
+
+    }
+
 
     private void launchUploadActivity1(boolean isPlaying, Uri uri) {
 
@@ -232,10 +280,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         if (isStarted == true) {
             System.out.println("snidsid");
             try {
-                Bundle bundle = new Bundle();
                 bundle.putString("videoUri", videoPath);
-
-
                 Intent intent = new Intent(this, VideoPlayerActivity.class);
 
                 intent.putExtras(bundle);
@@ -244,6 +289,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                 System.out.println("See here");
                 camera.lock();
                 System.out.println("recording stopped");
+                exitSound();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -484,4 +530,14 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
         camera.release();
         camera = null;
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        System.out.println("snjbshdvh");
+//        // your code.
+//        mediaPlayer.stop();
+//        VideoActivity.this.finish();
+//    }
+
+
 }
