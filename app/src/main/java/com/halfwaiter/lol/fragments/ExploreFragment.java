@@ -51,6 +51,7 @@ public class ExploreFragment extends Fragment {
             exploreModel.setSoundLength(soundLength[i]);
             exploreModel.setSoundName(soundName[i]);
             exploreModel.setSoundUrl(explrUrl[i]);
+            //ajhdjkashdkasjhd
 
             listExplore.add(exploreModel);
         }
