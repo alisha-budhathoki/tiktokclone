@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class ExploreFragment extends Fragment {
     private String[] soundLength = new String[]{"00:15","0:45", "01:16"};
-    private String[] soundName = new String[]{"Sound name","bsdabhgdsv" ,"sound name"};
+    private String[] soundName = new String[]{"Sound name romantic","bsdabhgdsv dil mil gaya re" ,"sound name hahaa haaha ahaa"};
     private String[] catName = new String[]{"Romantic", "Pop", "remix"};
     private String[] explrUrl = new String[]{"https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3","https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3", "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"};
 

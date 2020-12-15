@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -122,7 +123,13 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                 musicUrl = getIntent().getExtras().getString("audiourl");
                 musicName = getIntent().getExtras().getString("audioName");
                 System.out.println("SoundUrl : " + musicUrl + musicName);
+//                soundTxt.setText(musicName);
+                soundTxt.setEllipsize(TextUtils.TruncateAt.MARQUEE);
                 soundTxt.setText(musicName);
+                soundTxt.setSelected(true);
+                soundTxt.setSingleLine(true);
+                soundTxt.setSelected(true);
+
             }
         } catch (Exception e) {
             e.printStackTrace();

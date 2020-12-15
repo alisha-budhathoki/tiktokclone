@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,11 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
         final ExploreModel exploreModel = mList.get(position);
 //        holder.soundExploreLength.setText(exploreModel.getSoundLength());
         holder.soundExploreName.setText(exploreModel.getSoundName());
+        holder.soundExploreName.setEllipsize(TextUtils.TruncateAt.END);
+        holder.soundExploreName.setLines(1);
+        holder.soundExploreName.setMaxLines(1);
+
+
 
         holder.smallBangView.setOnClickListener(new View.OnClickListener() {
             @Override

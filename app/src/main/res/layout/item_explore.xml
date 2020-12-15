@@ -68,20 +68,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/txt_followers"
-            android:layout_weight="2"
-            android:gravity="start">
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/txt_soundnm_explr"
                 style="@style/textMediumStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_80sdp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/txt_followers"
                 android:layout_weight="2"
                 android:text="Following"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="start"/>
 
             <TextView
                 android:id="@+id/txt_sndlngth_explr"
@@ -92,6 +92,7 @@
                 android:layout_weight="2"
                 android:text="Following"
                 android:textAlignment="center"
+                android:gravity="start"
                 android:textColor="@color/primaryGrey" />
 
 
