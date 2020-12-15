@@ -127,7 +127,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
                 }
                 try {
                     System.out.println("sdnjab");
-                    mediaPlayer.prepare(); // might take long! (for buffering, etc)
+                    mediaPlayer.prepareAsync(); // might take long! (for buffering, etc)
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

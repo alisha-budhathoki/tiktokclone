@@ -15,23 +15,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textOk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ok"
+    <ImageView
+        android:id="@+id/ic_ok"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:src="@drawable/ic_check"
         android:textSize="@dimen/_20sdp"
-        app:layout_constraintEnd_toStartOf="@+id/txtCancel"
+        android:layout_marginBottom="@dimen/_20sdp"
+        app:layout_constraintEnd_toStartOf="@+id/ic_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></TextView>
+        app:layout_constraintStart_toStartOf="parent"></ImageView>
 
-    <TextView
-        android:id="@+id/txtCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
+    <ImageView
+        android:id="@+id/ic_cancel"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:src="@drawable/ic_cancel"
         android:textSize="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textOk"></TextView>
+        app:layout_constraintStart_toEndOf="@+id/ic_ok"></ImageView>
 </androidx.constraintlayout.widget.ConstraintLayout>
