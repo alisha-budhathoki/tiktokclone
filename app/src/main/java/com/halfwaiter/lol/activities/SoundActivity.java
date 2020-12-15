@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.halfwaiter.lol.R;
+import com.halfwaiter.lol.adapter.ExploreAdapter;
 import com.halfwaiter.lol.adapter.TabAdapter;
 import com.halfwaiter.lol.fragments.BookmarkedFragment;
 import com.halfwaiter.lol.fragments.ExploreFragment;
@@ -110,6 +111,35 @@ public class SoundActivity extends AppCompatActivity {
         } else {
             layoutParams.leftMargin = start;
             layoutParams.rightMargin = end;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            if (ExploreAdapter.mediaPlayer != null && ExploreAdapter.mediaPlayer.isPlaying()){
+                ExploreAdapter.mediaPlayer.stop();
+                ExploreAdapter.mediaPlayer.reset();
+                ExploreAdapter.mediaPlayer.release();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        try {
+            if (ExploreAdapter.mediaPlayer != null && ExploreAdapter.mediaPlayer.isPlaying()){
+                ExploreAdapter.mediaPlayer.stop();
+                ExploreAdapter.mediaPlayer.reset();
+                ExploreAdapter.mediaPlayer.release();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
