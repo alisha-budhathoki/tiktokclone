@@ -54,7 +54,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
 //        smallBangView.addOnAttachStateChangeListener(this);
         holder.btnStop.setEnabled(mLastSelected[0] == -1 || mLastSelected[0] == position);
         final ExploreModel exploreModel = mList.get(position);
-        holder.soundExploreLength.setText(exploreModel.getSoundLength());
+//        holder.soundExploreLength.setText(exploreModel.getSoundLength());
         holder.soundExploreName.setText(exploreModel.getSoundName());
 
         holder.smallBangView.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +96,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
         }
         final String urls = exploreModel.getSoundUrl();
         final String musicName = exploreModel.getSoundName();
-//        final MediaPlayer mPlayer = new MediaPlayer();
 
-//        final Bundle bundle = new Bundle();
-//        bundle.putString("audiourl", urls);
-//        bundle.putBoolean("isSound", true);
-//        System.out.println("sadjbs"+ urls);
-//
 
         holder.btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +121,8 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
                 }
                 try {
                     System.out.println("sdnjab");
-                    mediaPlayer.prepareAsync(); // might take long! (for buffering, etc)
+                    mediaPlayer.prepare(); // might take long! (for buffering, etc)
+                    holder.soundExploreLength.setText(milliSecondsToTimer(mediaPlayer.getDuration()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -168,6 +163,24 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.MyViewHo
                 context.startActivity(videoIntent);
             }
         });
+    }
+    private String milliSecondsToTimer(long milliseconds) {
+        String timerString = "";
+        String secondsString;
+        int hours = (int) (milliseconds / (1000 * 60 * 60));
+        int minutes = (int) (milliseconds % (1000 * 60 * 60)) / (1000 * 60);
+        int seconds = (int) ((milliseconds % (1000 * 60 * 60)) % (1000 * 60) / 1000);
+
+        if (hours > 0) {
+            timerString = hours + ":";
+        }
+        if (seconds < 10) {
+            secondsString = "0" + seconds;
+        } else {
+            secondsString = "" + seconds;
+        }
+        timerString = timerString + minutes + ":" + secondsString;
+        return timerString;
     }
 
 

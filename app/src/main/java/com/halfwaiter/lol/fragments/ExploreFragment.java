@@ -20,10 +20,10 @@ import com.halfwaiter.lol.model.ExploreModel;
 import java.util.ArrayList;
 
 public class ExploreFragment extends Fragment {
-    private String[] soundLength = new String[]{"00:15", "0:45", "01:16"};
-    private String[] soundName = new String[]{"Sound name", "bsdabhgdsv", "sound name"};
+    private String[] soundLength = new String[]{"00:15","0:45", "01:16"};
+    private String[] soundName = new String[]{"Sound name","bsdabhgdsv" ,"sound name"};
     private String[] catName = new String[]{"Romantic", "Pop", "remix"};
-    private String[] explrUrl = new String[]{"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3", "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"};
+    private String[] explrUrl = new String[]{"https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3","https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3", "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"};
 
     ExploreAdapter exploreAdapter;
     RecyclerView recyclerviewExplore;
@@ -47,15 +47,15 @@ public class ExploreFragment extends Fragment {
         ArrayList<ExploreModel> listExplore = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             ExploreModel exploreModel = new ExploreModel();
-            System.out.println("sjhdhjbd" + soundName[0] + soundName[1]);
+            System.out.println("sjhdhjbd"+soundName[0]+soundName[1]);
             exploreModel.setSoundLength(soundLength[i]);
             exploreModel.setSoundName(soundName[i]);
             exploreModel.setSoundUrl(explrUrl[i]);
-            //ajhdjkashdkasjhd
 
             listExplore.add(exploreModel);
         }
         return listExplore;
+
     }
 
 
