@@ -289,12 +289,27 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                 System.out.println("See here");
                 camera.lock();
                 System.out.println("recording stopped");
-                exitSound();
+                stopSound();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else
             System.out.println("knsjsbdjd");
+    }
+
+    private void stopSound() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        VideoActivity.this.finish();
+        stopSound();
+        stopCapturingVideo();
     }
 
     public void startCapturingVideo() {
