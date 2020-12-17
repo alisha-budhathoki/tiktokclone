@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.halfwaiter.lol.activities.TestActivity;
 import com.halfwaiter.lol.activities.VideoActivity;
 import com.halfwaiter.lol.fragments.HomeFragment;
 import com.halfwaiter.lol.fragments.NotificationFragment;
@@ -56,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                showFileAndCameraDialog(v);
 //                captureVideo(v);
-                Intent videoIntent = new Intent(getApplicationContext(), VideoActivity.class);
+                Intent videoIntent = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(videoIntent);
             }
         });
