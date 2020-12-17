@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.TextureView;
@@ -24,8 +27,11 @@ import com.halfwaiter.lol.fragments.HomeFragment;
 import com.halfwaiter.lol.fragments.NotificationFragment;
 import com.halfwaiter.lol.fragments.ProfileFragment;
 import com.halfwaiter.lol.fragments.SearchFragment;
+import com.nabinbhandari.android.permissions.PermissionHandler;
+import com.nabinbhandari.android.permissions.Permissions;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
@@ -37,6 +43,13 @@ public class HomeActivity extends AppCompatActivity {
     private final int VIDEO_REQUEST_CODE = 101;
     Dialog dialog;
     TextView txtCamera, txtGallery;
+
+    String[] permissions = {Manifest.permission.CAMERA , Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    String rationale = "Please provide Location and storage permission to get the gps location in this app and to save data.";
+    Permissions.Options options = new Permissions.Options()
+            .setRationaleDialogTitle("Info")
+            .setSettingsDialogTitle("Warning");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +65,28 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
 
 
+        Permissions.check(HomeActivity.this, permissions, rationale, options, new PermissionHandler() {
+            @Override
+            public void onGranted() {
+
+
+
+            }
+
+            @Override
+            public void onDenied(Context context, ArrayList<String> deniedPermissions) {
+                System.out.println("slkndsn");
+            }
+        });
+
+
+
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                showFileAndCameraDialog(v);
 //                captureVideo(v);
-                Intent videoIntent = new Intent(getApplicationContext(), TestActivity.class);
+                Intent videoIntent = new Intent(getApplicationContext(), VideoActivity.class);
                 startActivity(videoIntent);
             }
         });

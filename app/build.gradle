@@ -41,4 +41,5 @@ dependencies {
     implementation 'org.mp4parser:isoparser:1.9.41'
     implementation 'org.mp4parser:muxer:1.9.41'
     implementation 'org.mp4parser:streaming:1.9.41'
+    implementation 'com.nabinbhandari.android:permissions:3.8'
 }
