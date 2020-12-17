@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".activities.VideoPlayerActivity"></activity>
+        <activity android:name=".activities.TestActivity"></activity>
+        <activity android:name=".activities.VideoPlayerActivity" />
         <activity android:name=".activities.SoundActivity" />
         <activity android:name=".activities.VideoActivity" />
         <activity android:name=".HomeActivity">

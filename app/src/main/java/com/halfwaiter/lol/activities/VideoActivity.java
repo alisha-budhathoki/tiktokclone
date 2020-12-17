@@ -363,7 +363,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
             recorder.setVideoEncodingBitRate(3000000);
             recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);// MPEG_4_SP
             recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
+//            setMicMuted(true);
             recorder.setOutputFile(videoPath);
             recorder.setOrientationHint(camDegree);
             recorder.prepare();
@@ -381,6 +381,22 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
 //        Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
 //        startActivityForResult(mediaIntent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
+    }
+    private void setMicMuted(boolean state){
+        AudioManager myAudioManager = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+
+        // get the working mode and keep it
+        int workingAudioMode = myAudioManager.getMode();
+
+        myAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+
+        // change mic state only if needed
+        if (myAudioManager.isMicrophoneMute() != state) {
+            myAudioManager.setMicrophoneMute(state);
+        }
+
+        // set back the original working mode
+        myAudioManager.setMode(workingAudioMode);
     }
 
     private ArrayList<TimeSecond> seeTimeLength() {

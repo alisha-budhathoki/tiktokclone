@@ -37,4 +37,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
+    compile 'com.writingminds:FFmpegAndroid:0.3.2'
+    implementation 'org.mp4parser:isoparser:1.9.41'
+    implementation 'org.mp4parser:muxer:1.9.41'
+    implementation 'org.mp4parser:streaming:1.9.41'
 }
