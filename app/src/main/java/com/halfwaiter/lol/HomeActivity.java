@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.halfwaiter.lol.activities.MixerActivity;
 import com.halfwaiter.lol.activities.TestActivity;
 import com.halfwaiter.lol.activities.VideoActivity;
 import com.halfwaiter.lol.fragments.HomeFragment;

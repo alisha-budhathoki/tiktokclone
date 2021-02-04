@@ -38,7 +38,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.halfwaiter.lol.OnAlarmListener;
 import com.halfwaiter.lol.R;
 import com.halfwaiter.lol.TimerThread;
-import com.halfwaiter.lol.VideoCapture;
 import com.halfwaiter.lol.adapter.TimeLengthAdapter;
 import com.halfwaiter.lol.model.TimeSecond;
 
@@ -342,6 +341,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
                     "VID_" + i + ".mp4");
 
             videoPath = mediaFile.getAbsolutePath();
+            System.out.println("asknjskjabsas"+ videoPath);
 
 //            file.getParentFile().mkdirs();
 
